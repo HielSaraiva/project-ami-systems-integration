@@ -6,8 +6,8 @@
 
    - Redis;
    - ActiveMQ;
-   - Eureka;
-   - API Gateway;
+   - ~~Eureka~~;
+   - ~~API Gateway~~;
    - CronJob;
    - Postgres;
    - FTP;
@@ -26,9 +26,8 @@
 
 A primeira atividade é configurar um ambiente minimalista para o projeto.
 
-Instale o docker e crie um docker-compose que suba: Um redis, um activemq-artemis  e um postgresql.
+Instale o docker e crie um docker-compose que suba: Um **redis**, um **activemq-artemis**  e um **postgresql**.
 
-Acesse cada um desses serviços via terminal, e execute comandos simples (criação, escrita, remoção)…
+Acesse cada um desses serviços via terminal, e execute comandos simples (criação, escrita, remoção).
 
-O entregável dessa atividade é um docker compose funcional e a demonstração de conhecimentos rudimentares nos sistemas acima.
-
+O entregável dessa atividade é um docker compose funcional e um relatório que demonstre conhecimentos rudimentares nos sistemas acima.

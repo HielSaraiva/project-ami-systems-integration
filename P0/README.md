@@ -1,8 +1,10 @@
-## Projeto 0 - Preparar o ambiente
+# Projeto 0 - Preparar o ambiente
+
+## Visão Geral
 
 Antes de começar o projeto, será necessário aprender algumas coisas, adquirir alguns softwares…
 
-Por padrão a equipe usa o **Intellij** para trabalhar com **java (17)**. De framework, trabalhamos com o **springboot**.
+Por padrão a equipe usa o **Intellij** para trabalhar com **java (17)**. De framework, trabalhamos com o **spring framework**.
 
 O projeto principal tem uma estrutura bem similar ao padrão de projeto **Saga baseado em coreografia** com banco compartilhado (ou seja, um banco para a aplicação toda).
 
@@ -23,3 +25,27 @@ Instale o docker e crie um docker-compose que suba: Um redis, um activemq-artemi
 Acesse cada um desses serviços via terminal, e execute comandos simples (criação, escrita, remoção)…
 
 O entregável dessa atividade é um docker compose funcional e a demonstração de conhecimentos rudimentares nos sistemas acima.
+
+---
+
+## Passo-a-Passo
+
+### 1. Criando arquivo docker-compose.yml e subindo Containers
+
+O primeiro passo do projeto foi criar um arquivo [docker-compose.yaml](/P0/docker-compose.yml) contendo os serviços requeridos e suas respectivas configurações.
+
+Para subir todos os serviços, use o seguinte comando na pasta raiz [P0](/P0/):
+
+````shell
+docker compose up -d # A tag -d, d de detached, serve para liberar o terminal após iniciar os serviços.
+````
+
+Após subir os serviços, verifique os status deles com o seguinte comando:
+
+````shell
+docker ps -a # A tag -a serve para listar todos os containers, inclusive os parados ou encerrados.
+````
+
+Deve aparecer algo semelhante:
+
+![Status dos containers Docker](./assets/image1.png)
