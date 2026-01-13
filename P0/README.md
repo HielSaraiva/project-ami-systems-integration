@@ -1,5 +1,21 @@
 # Projeto 0 - Preparar o ambiente
 
+## Índice
+
+- [Visão Geral](#visão-geral)
+- [Passo-a-Passo](#passo-a-passo)
+  - [1. Criando arquivo docker-compose.yml e subindo Containers](#1-criando-arquivo-docker-composeyml-e-subindo-containers)
+  - [2. Acessando cada um dos serviços via terminal](#2-acessando-cada-um-dos-serviços-via-terminal)
+    - [2.1 PostgreSQL](#21-postgresql)
+    - [2.2 Redis](#22-redis)
+    - [2.3 ActiveMQ Artemis](#23-activemq-artemis)
+  - [3. Executando comandos simples](#3-executando-comandos-simples)
+    - [3.1 PostgreSQL](#31-postgresql)
+    - [3.2 Redis](#32-redis)
+    - [3.3 ActiveMQ Artemis](#33-activemq-artemis)
+
+---
+
 ## Visão Geral
 
 Antes de começar o projeto, será necessário aprender algumas coisas, adquirir alguns softwares…
