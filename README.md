@@ -31,3 +31,11 @@ Instale o docker e crie um docker-compose que suba: Um **redis**, um **activemq-
 Acesse cada um desses serviços via terminal, e execute comandos simples (criação, escrita, remoção).
 
 O entregável dessa atividade é um docker compose funcional e um relatório que demonstre conhecimentos rudimentares nos sistemas acima.
+
+### Entregáveis
+
+- **DockerCompose:** [docker-compose.yml](/P0/docker-compose.yml)
+
+- **Relatório:** [README.md](./P0/README.md) 
+
+--- 
