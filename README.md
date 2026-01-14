@@ -47,3 +47,19 @@ O entregável dessa atividade é um docker compose funcional e um relatório que
 - **Relatório:** [README.md](./P0/README.md) 
 
 --- 
+
+## Projeto 1 - Consumo Simples
+
+Primeiramente: bem-vinde! Você acabou de chegar na empresa, e suas atividades serão bem simples nesse primeiro momento. Que tal começar com algo fácil: converter uma mensagem JSON em um CSV.
+
+As mensagens estão chegando via fila do ActiveMQ, mas estão formatadas em JSON. Para a aplicação, o cliente requer que seja feito o backup das mensagens em forma de CSV. Outro desenvolvedor está responsável pela funcionalidade de salvar essas mensagens em um arquivo. Você só precisa estruturar a mensagem do JSON para um CSV.
+
+### Entregáveis
+
+- **DockerCompose:** [docker-compose.yml](/P1/docker-compose.yml)
+
+- **Projeto Java Spring:** []()
+
+- **Relatório:** [README.md](./P1/README.md) 
+
+---
