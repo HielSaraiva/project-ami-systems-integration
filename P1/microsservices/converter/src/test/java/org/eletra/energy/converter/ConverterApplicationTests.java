@@ -1,13 +1,13 @@
-package org.eletra.energy.converter.controllers;
+package org.eletra.energy.converter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class JmsControllerTest {
+class ConverterApplicationTests {
 
     @Test
-    public void tes1() {
-
+    void contextLoads() {
     }
+
 }
