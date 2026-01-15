@@ -1,0 +1,13 @@
+package org.eletra.energy.converter.services;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class JsonToCsvServiceTest {
+
+    @Test
+    public void test1() {
+
+    }
+}

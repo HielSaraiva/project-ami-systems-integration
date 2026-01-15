@@ -96,6 +96,30 @@ Usei a IntelliJ IDE da JetBrains para criar o módulo:
 
 ![Criando Projeto Java Spring](assets/image3.png)
 
-Adicionei essas dependências ao criar o Projeto, mesmo sabendo que não usarei algumas nesta etapa do desenvolvimento.
+Adicionei essas dependências ao criar o Projeto, mesmo sabendo que não usarei algumas nesta etapa do desenvolvimento:
 
-![Dependências do Projeto Java Spring](image.png)
+![Dependências do Projeto Java Spring](assets/image4.png)
+
+> **Observação:** Consulte a documentação do Spring: [HELP.md](microsservices/converter/HELP.md)
+
+### 4. Configurando application.properties
+
+Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/converter/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL e o ActiveMQ Artemis.
+
+### 5. Criando modelo Json.java e Controller JmsController.java
+
+Criei um modelo [Json.java](microsservices/converter/src/main/java/org/eletra/energy/converter/models/Json.java) e um controller [JmsController.java](microsservices/converter/src/main/java/org/eletra/energy/converter/controllers/JmsController.java) que se conecta à fila artemis para receber a mensagem JSON.
+
+Ao rodar a aplicação, deve aparecer algo do tipo:
+
+![receiveJson](assets/image5.png)
+
+### 6. Criando Service para converter Json para Csv
+
+Criei um service [JsonToCsvService](microsservices/converter/src/main/java/org/eletra/energy/converter/services/JsonToCsvService.java) para converter o JSON para CSV.
+
+Ao rodar a aplicação, deve ser visto algo do tipo:
+
+![Json to Csv](assets/image6.png)
+
+### 7. Testes
