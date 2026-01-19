@@ -5,6 +5,8 @@
 - [Objetivos Gerais](#objetivos-gerais)
 - [Projeto 0 - Preparar o Ambiente](#projeto-0---preparar-o-ambiente)
   - [Entregáveis](#entregáveis)
+- [Projeto 1 - Consumo Simples](#projeto-1---consumo-simples)
+   - [Entregáveis](#entregáveis-1)
 
 ---
 

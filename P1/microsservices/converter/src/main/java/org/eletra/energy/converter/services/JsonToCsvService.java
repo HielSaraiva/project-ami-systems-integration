@@ -1,4 +1,4 @@
-package org.eletra.energy.converter.utils;
+package org.eletra.energy.converter.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -6,17 +6,21 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-public class JsonToCsvUtils {
+@RequiredArgsConstructor
+@Service
+public class JsonToCsvService {
 
-    private static final ObjectMapper JSON = new ObjectMapper();
-    private static final CsvMapper CSV = new CsvMapper();
+    private final ObjectMapper objectMapper;
+    private final CsvMapper csvMapper;
 
-    public static String convert(String json) throws Exception {
+    public String convert(String json) throws Exception {
 
-        JsonNode root = JSON.readTree(json);
+        JsonNode root = objectMapper.readTree(json);
         List<Map<String, String>> rows = new ArrayList<>();
 
         if (root.isArray()) {
@@ -48,13 +52,13 @@ public class JsonToCsvUtils {
         }
         CsvSchema schema = schemaBuilder.build().withHeader();
 
-        return CSV.writerFor(new TypeReference<List<Map<String, String>>>() {
+        return csvMapper.writerFor(new TypeReference<List<Map<String, String>>>() {
                 })
                 .with(schema)
                 .writeValueAsString(rows);
     }
 
-    private static void flatten(JsonNode node, String prefix, Map<String, String> out) throws JsonProcessingException {
+    private void flatten(JsonNode node, String prefix, Map<String, String> out) throws JsonProcessingException {
 
         if (node.isNull()) {
             String key = prefix.isEmpty() ? "value" : prefix;
