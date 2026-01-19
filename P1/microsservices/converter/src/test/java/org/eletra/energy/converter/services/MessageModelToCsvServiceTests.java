@@ -1,6 +1,8 @@
 package org.eletra.energy.converter.services;
 
+import org.eletra.energy.converter.controllers.JmsController;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,13 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class MessageModelToCsvServiceTests {
 
+    @Autowired
+    private JsonToCsvService jsonToCsvService;
+
     @Test
     public void convertShouldThrowOnMalformedJson() {
         // Arrange
         String badJson = "{\"user\":\"id\":\"5e08d080\"}";
 
         // Act
-        Exception exception = assertThrows(Exception.class, () -> JsonToCsvService.convert(badJson));
+        Exception exception = assertThrows(Exception.class, () -> jsonToCsvService.convert(badJson));
 
         // Assert
         assertTrue(exception.getMessage().contains("Unexpected character"), "Expected a JSON parsing exception");
@@ -26,7 +31,7 @@ public class MessageModelToCsvServiceTests {
         String json = "[]";
 
         // Act
-        String csv = JsonToCsvService.convert(json);
+        String csv = jsonToCsvService.convert(json);
 
         // Assert
         assertEquals("", csv, "Expected empty CSV for empty JSON array");
@@ -38,7 +43,7 @@ public class MessageModelToCsvServiceTests {
         String json = "123";
 
         // Act
-        String csv = JsonToCsvService.convert(json);
+        String csv = jsonToCsvService.convert(json);
 
         // Assert
         assertTrue(csv.contains("value"), "Expected CSV to contain 'value' header");
@@ -51,7 +56,7 @@ public class MessageModelToCsvServiceTests {
         String json = "null";
 
         // Act
-        String csv = JsonToCsvService.convert(json);
+        String csv = jsonToCsvService.convert(json);
 
         // Assert
         assertTrue(csv.contains("value"), "Expected CSV to contain 'value' header");
@@ -64,7 +69,7 @@ public class MessageModelToCsvServiceTests {
         String json = "{\"user\":{\"id\":\"1\",\"name\":\"X\"},\"status\":null}";
 
         // Act
-        String csv = JsonToCsvService.convert(json);
+        String csv = jsonToCsvService.convert(json);
 
         // Assert
         assertTrue(csv.contains("user.id"), "Expected CSV to contain 'user.id' header");
@@ -81,7 +86,7 @@ public class MessageModelToCsvServiceTests {
         String json = "[{\"a\":1},{\"a\":2}]";
 
         // Act
-        String csv = JsonToCsvService.convert(json);
+        String csv = jsonToCsvService.convert(json);
 
         // Assert
         assertTrue(csv.contains("a"), "Expected CSV to contain 'a' header");
@@ -95,7 +100,7 @@ public class MessageModelToCsvServiceTests {
         String json = "[[1, \"x\", null]]";
 
         // Act
-        String csv = JsonToCsvService.convert(json);
+        String csv = jsonToCsvService.convert(json);
 
         // Assert
         assertTrue(csv.contains("value"), "Expected CSV to contain 'value' header");

@@ -106,21 +106,21 @@ Adicionei essas dependências ao criar o Projeto, mesmo sabendo que não usarei 
 
 Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/converter/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL e ao ActiveMQ Artemis.
 
-### 5. Criando modelo Json.java e Controller JmsController.java
+### 5. Criando modelo MessageModel.java e Controller JmsController.java
 
-Criei um modelo [Json.java](microsservices/converter/src/main/java/org/eletra/energy/converter/models/Json.java) e um controller [JmsController.java](microsservices/converter/src/main/java/org/eletra/energy/converter/controllers/JmsController.java) que se conecta à fila artemis para receber a mensagem JSON.
+Criei um modelo [MessageModel.java](microsservices/converter/src/main/java/org/eletra/energy/converter/models/MessageModel.java) e um controller [JmsController.java](microsservices/converter/src/main/java/org/eletra/energy/converter/controllers/JmsController.java) que se conecta à fila artemis para receber a mensagem JSON. Utilizei a injeção de dependências via construtor na classe Controller, visto que ``@Autowired`` está deprecated!
 
 Ao rodar a aplicação, deve aparecer algo do tipo:
 
 ![receiveJson](assets/image5.png)
 
-### 6. Criando classe utilitária para converter Json para Csv
+### 6. Criando classe Service para converter Json para Csv
 
 Primeiro, tive que adicionar ao [pom.xml](/P1/microsservices/converter/pom.xml) do projeto as seguintes dependências:
 
 ![Dependências para lidar com JSON](assets/image7.png)
 
-Depois, criei uma classe utils [JsonToCsvUtils](microsservices/converter/src/main/java/org/eletra/energy/converter/utils/JsonToCsvUtils.java) para converter o JSON para CSV.
+Depois, criei uma classe Service [JsonToCsvService](microsservices/converter/src/main/java/org/eletra/energy/converter/services/JsonToCsvService.java) para converter o JSON para CSV.
 
 Ao rodar a aplicação, deve ser visto algo do tipo:
 
