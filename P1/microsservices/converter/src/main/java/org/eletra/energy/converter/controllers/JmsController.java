@@ -1,7 +1,7 @@
 package org.eletra.energy.converter.controllers;
 
 import org.eletra.energy.converter.models.Json;
-import org.eletra.energy.converter.services.JsonToCsvService;
+import org.eletra.energy.converter.utils.JsonToCsvUtils;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Controller;
 
@@ -9,13 +9,9 @@ import org.springframework.stereotype.Controller;
 public class JmsController {
 
     @JmsListener(destination = "training-converter.receive_as_json")
-    public void receiveJson(Json json) {
+    public void receiveJson(Json json) throws  Exception {
         System.out.println("Received JSON message:\n" + json.getBody());
-        try {
-            String csv = JsonToCsvService.convert(json.getBody());
-            System.out.println("Converted JSON message:\n" + csv);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        String csv = JsonToCsvUtils.convert(json.getBody());
+        System.out.println("Converted JSON message:\n" + csv);
     }
 }

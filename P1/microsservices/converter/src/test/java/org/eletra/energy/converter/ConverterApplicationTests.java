@@ -4,10 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConverterApplicationTests {
+public class ConverterApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
+    public void testMainMethod() {
+        // Assert
+        // No specific arrangement needed for this test
 
+        // Act
+        ConverterApplication.main(new String[] {});
+
+        // Assert
+        // No exception should be thrown during application startup
+    }
 }

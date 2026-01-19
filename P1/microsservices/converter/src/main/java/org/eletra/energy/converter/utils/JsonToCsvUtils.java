@@ -1,21 +1,21 @@
-package org.eletra.energy.converter.services;
+package org.eletra.energy.converter.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service
-public class JsonToCsvService {
+public class JsonToCsvUtils {
 
     private static final ObjectMapper JSON = new ObjectMapper();
     private static final CsvMapper CSV = new CsvMapper();
 
     public static String convert(String json) throws Exception {
+
         JsonNode root = JSON.readTree(json);
         List<Map<String, String>> rows = new ArrayList<>();
 
@@ -54,8 +54,9 @@ public class JsonToCsvService {
                 .writeValueAsString(rows);
     }
 
-    private static void flatten(JsonNode node, String prefix, Map<String, String> out) {
-        if (node == null || node.isNull()) {
+    private static void flatten(JsonNode node, String prefix, Map<String, String> out) throws JsonProcessingException {
+
+        if (node.isNull()) {
             String key = prefix.isEmpty() ? "value" : prefix;
             out.put(key, "null");
             return;
@@ -70,28 +71,16 @@ public class JsonToCsvService {
             }
         } else if (node.isArray()) {
             String key = prefix.isEmpty() ? "value" : prefix;
-            boolean allPrimitive = true;
             List<String> parts = new ArrayList<>();
             for (JsonNode e : node) {
                 if (e == null || e.isNull()) {
                     parts.add("null");
                 } else if (e.isValueNode()) {
                     parts.add(e.asText(""));
-                } else {
-                    allPrimitive = false;
-                    break;
                 }
             }
             String value;
-            if (allPrimitive) {
-                value = String.join(";", parts);
-            } else {
-                try {
-                    value = JSON.writeValueAsString(node);
-                } catch (Exception ex) {
-                    value = node.toString();
-                }
-            }
+            value = String.join(";", parts);
             out.put(key, value);
         } else {
             String key = prefix.isEmpty() ? "value" : prefix;
