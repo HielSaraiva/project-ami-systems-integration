@@ -1,5 +1,6 @@
 package org.eletra.energy.converter;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,14 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ConverterApplicationTests {
 
     @Test
+    public void contextLoads() {
+    }
+
+    @Test
     public void testMainMethod() {
-        // Assert
+        // Given
         // No specific arrangement needed for this test
 
-        // Act
-        ConverterApplication.main(new String[] {});
-
-        // Assert
-        // No exception should be thrown during application startup
+        // When & Then
+        Assertions.assertDoesNotThrow(() -> {
+            ConverterApplication.main(new String[] {});
+        });
     }
 }

@@ -26,7 +26,7 @@ As mensagens estão chegando via fila do ActiveMQ, mas estão formatadas em JSON
 
 # Formato de saída
 user,time,message
-Tereza,2026-08-24 13:59:00,"yipe hey, yipe ho... e uma garrafa de rum!"
+Tereza,"2026-08-24 13:59:00","yipe hey, yipe ho... e uma garrafa de rum!"
 ```
 
 ## Pré-condição
@@ -41,14 +41,15 @@ Tereza,2026-08-24 13:59:00,"yipe hey, yipe ho... e uma garrafa de rum!"
 - Criar um projeto novo (um módulo) que use maven, springboot e java 17;
 - Criar uma controller com um endpoint que leia da fila **training-converter.send_as_json**;
 - Ler essa mensagem e converter o conteúdo dela para um CSV;
-- Apresentar esse CSV no terminal.
+- Apresentar esse CSV no terminal;
+- Enviar CSV formatado para fila **training-converter.send_as_csv**.
 
 ## Pós-condição
 
 - Uma CONVERTER foi criada;
 - Está recebendo dados da BUSINESS fornecida;
 - Os dados recebidos estão sendo formatados corretamente, e estão sendo apresentados no terminal, conforme chegam;
-- A cobertura de teste é de 100%.
+- A cobertura de teste é de 100%. (TDD)
 
 ## Relatório de variável de ambientes
 
@@ -126,10 +127,19 @@ Ao rodar a aplicação, deve ser visto algo do tipo:
 
 ![Json to Csv](assets/image6.png)
 
-### 7. Testes Unitários
+### 7. Criar MapperConfig
 
-Para concluir, realizei os testes unitários das classes do projeto:
+Criei um [MapperConfig](/P1/microsservices/converter/src/main/java/org/eletra/energy/converter/configs/MapperConfig.java) para centralizar e expor como Beans algumas instâncias compartilhadas (Singletons).
+
+### 8. Testes Unitários
+
+Para concluir, realizei os testes unitários das classes do projeto, mas antes configurei o arquivo [applications.properties](/P1/microsservices/converter/src/test/resources/application.properties) da pasta de testes para desabilitar o JMS Listener, pois estava interferindo negativamente nos testes, o que não é ideal:
+
+````
+# Disable JMS Listeners for Tests
+spring.jms.listener.auto-startup=false
+````
+
+Depois, parti para o desenvolvimento dos testes, garantindo 100% de cobertura:
 
 ![Test with Coverage](assets/image8.png)
-
-> **Observação:** Garantindo 100% de cobertura.

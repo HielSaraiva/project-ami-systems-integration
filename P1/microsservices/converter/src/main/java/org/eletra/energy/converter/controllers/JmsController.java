@@ -11,10 +11,9 @@ import org.springframework.stereotype.Controller;
 public class JmsController {
     private final JsonToCsvService jsonToCsvService;
 
-    @JmsListener(destination = "training-converter.receive_as_json")
+    @JmsListener(destination = "training-converter.send_as_json")
     public void receiveJson(MessageModel messageModel) throws  Exception {
         System.out.println("Received JSON message:\n" + messageModel.getBody());
-        String csv = jsonToCsvService.convert(messageModel.getBody());
-        System.out.println("Converted JSON message:\n" + csv);
+        jsonToCsvService.execute(messageModel.getBody());
     }
 }
