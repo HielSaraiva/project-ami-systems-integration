@@ -7,6 +7,8 @@
   - [Entregáveis](#entregáveis)
 - [Projeto 1 - Consumo Simples](#projeto-1---consumo-simples)
    - [Entregáveis](#entregáveis-1)
+- [Projeto 2 - Alteração nas regras de negócio](#projeto-2---alteração-nas-regras-de-negócio)
+   - [Entregáveis](#entregáveis-2)
 
 ---
 
@@ -63,5 +65,17 @@ As mensagens estão chegando via fila do ActiveMQ, mas estão formatadas em JSON
 - **Projeto Java Spring:** [microsservices/converter](P1/microsservices/converter/)
 
 - **Relatório:** [README.md](./P1/README.md) 
+
+---
+
+## Projeto 2 - Alteração nas regras de negócio
+
+O cliente mudou a regra de negócio 🤬🤬🤬. O cliente não quer mais salvar o nome de usuário, mas sim o ID desse usuário. Porém, o BUSINESS antigo não pode ser alterado pois já está sendo usado por outro projeto. Sendo assim, você precisa criar um BUSINESS novo, que repasse esses dados para a CONVERTER previamente criada. ALTERAR A CONVERTER NÃO É UMA OPÇÃO!
+
+### Entregáveis
+
+- **Projeto Java Spring:** [microsservices/business](P2/microsservices/business/)
+
+- **Relatório:** [README.md](./P2/README.md) 
 
 ---
