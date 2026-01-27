@@ -17,6 +17,7 @@ public class JsonFormatService {
 
     private final ObjectMapper objectMapper;
     private final JmsTemplate jmsTemplate;
+    private final Clock clock;
 
     public void execute(String json) throws Exception {
 
@@ -60,7 +61,7 @@ public class JsonFormatService {
         String sentAtFormatted = formatSentAt(sentAtRaw);
         String createdAt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                 .withZone(ZoneOffset.UTC)
-                .format(Instant.now());
+                .format(Instant.now(clock));
 
         Map<String, String> m = new LinkedHashMap<>();
         m.put("username", userId);
@@ -72,18 +73,13 @@ public class JsonFormatService {
 
     private String formatSentAt(String raw) throws IllegalArgumentException {
 
-        if (raw == null || raw.isEmpty()) return "";
-
         DateTimeFormatter inFmt = DateTimeFormatter.ofPattern("MM-dd-uuuu'T'HH:mm:ss.SSS'Z'")
                 .withZone(ZoneOffset.UTC);
         DateTimeFormatter outFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                 .withZone(ZoneOffset.UTC);
 
-        try {
-            Instant inst = inFmt.parse(raw, Instant::from);
-            return outFmt.format(inst);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid date format in sentAt field!");
-        }
+        Instant inst = inFmt.parse(raw, Instant::from);
+        return outFmt.format(inst);
+
     }
 }

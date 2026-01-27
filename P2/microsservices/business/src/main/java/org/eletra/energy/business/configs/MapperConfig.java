@@ -5,6 +5,8 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Clock;
+
 @Configuration
 public class MapperConfig {
 
@@ -16,5 +18,10 @@ public class MapperConfig {
     @Bean
     public CsvMapper csvMapper() {
         return new CsvMapper();
+    }
+
+    @Bean
+    public Clock clock() {
+        return Clock.systemUTC();
     }
 }
