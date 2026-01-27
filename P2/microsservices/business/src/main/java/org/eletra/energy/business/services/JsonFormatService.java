@@ -24,15 +24,15 @@ public class JsonFormatService {
 
     public void execute(String json) throws Exception {
 
-        ReceivedMessageDTO receivedMessageDto = objectMapper.readValue(json, ReceivedMessageDTO.class);
+        ReceivedMessageDTO receivedMessageDTO = objectMapper.readValue(json, ReceivedMessageDTO.class);
 
-        SentMessageDTO sentMessageDto = new SentMessageDTO(
-                receivedMessageDto.getUser().getId(),
+        SentMessageDTO sentMessageDTO = new SentMessageDTO(
+                receivedMessageDTO.getUser().getId(),
                 formatter.format(Instant.now(clock)),
-                formatSentAt(receivedMessageDto.getLog().getSentAt()),
-                receivedMessageDto.getLog().getMessage());
+                formatSentAt(receivedMessageDTO.getLog().getSentAt()),
+                receivedMessageDTO.getLog().getMessage());
 
-        String outputMessage = objectMapper.writeValueAsString(sentMessageDto);
+        String outputMessage = objectMapper.writeValueAsString(sentMessageDTO);
 
         System.out.println("Converted JSON message:\n" + outputMessage);
         System.out.println("Sending JSON message to training-converter.send_as_json");
