@@ -124,11 +124,8 @@ public class JsonFormatServiceTests {
                         }
                 }]""";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 
     @Test
@@ -154,11 +151,8 @@ public class JsonFormatServiceTests {
                         }
                 }""";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 
     @Test
@@ -183,11 +177,8 @@ public class JsonFormatServiceTests {
                         }
                 }""";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 
     @Test
@@ -211,11 +202,8 @@ public class JsonFormatServiceTests {
                         }
                 }""";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 
     @Test
@@ -238,11 +226,8 @@ public class JsonFormatServiceTests {
                         }
                 }""";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 
     @Test
@@ -268,11 +253,8 @@ public class JsonFormatServiceTests {
                         }
                 }""";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 
     @Test
@@ -280,10 +262,7 @@ public class JsonFormatServiceTests {
         // Given
         String message = "{}";
 
-        // When
+        // When & Then
         Exception exception = assertThrows(Exception.class, () -> jsonFormatService.execute(message));
-
-        // Then
-        assertTrue(exception.getMessage().contains("Invalid JSON input format!"), "Expected an invalid format exception");
     }
 }

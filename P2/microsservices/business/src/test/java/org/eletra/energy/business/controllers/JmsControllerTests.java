@@ -1,7 +1,5 @@
 package org.eletra.energy.business.controllers;
 
-import jakarta.jms.*;
-import org.eletra.energy.business.models.MessageModel;
 import org.eletra.energy.business.services.JsonFormatService;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
@@ -51,8 +49,7 @@ public class JmsControllerTests {
     @Test
     public void jsonShouldBeSendToConvert() throws Exception {
         // Given
-        MessageModel messageModel = new MessageModel();
-        messageModel.setBody("""
+        String message = """
                 {
                     "user":
                         {
@@ -71,22 +68,21 @@ public class JmsControllerTests {
                             "message":"No. Interestingly enough, her leaf blower picked up.",
                             "format":null
                         }
-                }""");
+                }""";
 
         // When
         Assertions.assertDoesNotThrow(() -> {
-            jmsController.receiveJson(messageModel);
+            jmsController.receiveJson(message);
         });
 
         // Then
-        Mockito.verify(jsonFormatService, Mockito.times(1)).execute(messageModel.getBody());
+        Mockito.verify(jsonFormatService, Mockito.times(1)).execute(message);
     }
 
     @Test
     public void sendShouldThrowOnMalformedJson() {
         // Given
-        MessageModel messageModel = new MessageModel();
-        messageModel.setBody("""
+        String message = """
                 {
                     "user"
                         {
@@ -105,10 +101,10 @@ public class JmsControllerTests {
                             "message":"No. Interestingly enough, her leaf blower picked up.",
                             "format":null
                         }
-                }""");
+                }""";
 
         // When
-        Exception exception = assertThrows(Exception.class, () -> jmsController.receiveJson(messageModel));
+        Exception exception = assertThrows(Exception.class, () -> jmsController.receiveJson(message));
 
         // Then
         assertTrue(exception.getMessage().contains("Unexpected character"), "Expected a JSON parsing exception");

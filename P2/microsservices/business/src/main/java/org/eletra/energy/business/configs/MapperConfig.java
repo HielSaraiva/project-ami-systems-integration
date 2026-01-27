@@ -16,11 +16,6 @@ public class MapperConfig {
     }
 
     @Bean
-    public CsvMapper csvMapper() {
-        return new CsvMapper();
-    }
-
-    @Bean
     public Clock clock() {
         return Clock.systemUTC();
     }
