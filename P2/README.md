@@ -82,6 +82,12 @@ Desta vez, preparei o ambiente para realizar testes de integração utilizando [
 `````java
 <dependency>
     <groupId>org.testcontainers</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>1.19.4</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.testcontainers</groupId>
     <artifactId>testcontainers-activemq</artifactId>
     <version>2.0.1</version>
     <scope>test</scope>

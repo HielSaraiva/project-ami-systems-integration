@@ -26,6 +26,8 @@ public class JsonFormatService {
 
         ReceivedMessageDTO receivedMessageDTO = objectMapper.readValue(json, ReceivedMessageDTO.class);
 
+        verifyReceivedMessageFormat(receivedMessageDTO);
+
         SentMessageDTO sentMessageDTO = new SentMessageDTO(
                 receivedMessageDTO.getUser().getId(),
                 formatter.format(Instant.now(clock)),
@@ -49,5 +51,23 @@ public class JsonFormatService {
 
         Instant inst = inFmt.parse(raw, Instant::from);
         return outFmt.format(inst);
+    }
+
+    private void verifyReceivedMessageFormat(ReceivedMessageDTO dto) throws Exception {
+        if (dto.getUser() == null) {
+            throw new Exception("User is missing in received message");
+        }
+        if (dto.getLog() == null) {
+            throw new Exception("Log is missing in received message");
+        }
+        if (dto.getUser().getId() == null || dto.getUser().getId().isEmpty()) {
+            throw new Exception("Invalid user ID in received message");
+        }
+        if (dto.getLog().getSentAt() == null || dto.getLog().getSentAt().isEmpty()) {
+            throw new Exception("Invalid sentAt in received message log");
+        }
+        if (dto.getLog().getMessage() == null || dto.getLog().getMessage().isEmpty()) {
+            throw new Exception("Invalid message content in received message log");
+        }
     }
 }
