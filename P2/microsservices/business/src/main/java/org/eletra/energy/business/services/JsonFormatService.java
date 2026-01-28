@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.eletra.energy.business.models.dtos.ReceivedMessageDTO;
 import org.eletra.energy.business.models.dtos.SentMessageDTO;
+import org.slf4j.Logger;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class JsonFormatService {
     private final ObjectMapper objectMapper;
     private final JmsTemplate jmsTemplate;
     private final Clock clock;
+    private final Logger logger;
 
     private final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -36,10 +38,10 @@ public class JsonFormatService {
 
         String outputMessage = objectMapper.writeValueAsString(sentMessageDTO);
 
-        System.out.println("Converted JSON message:\n" + outputMessage);
-        System.out.println("Sending JSON message to training-converter.send_as_json");
+        logger.info("Converted JSON message:\n{}", outputMessage);
+        logger.info("Sending JSON message to training-converter.send_as_json");
         jmsTemplate.convertAndSend("training-converter.send_as_json", outputMessage);
-        System.out.println("Message sent!\n");
+        logger.info("Message sent!\n");
     }
 
     private String formatSentAt(String raw) {
