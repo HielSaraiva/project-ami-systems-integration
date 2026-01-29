@@ -175,6 +175,6 @@ Primeiro, é necessário adicionar a seguinte dependência ao [pom.xml](microsse
 
 > **Observação:** O Spring boot utiliza o Logback como logging padrão! Verifique a [documentação](https://docs.spring.io/spring-boot/how-to/logging.html)!
 
-Depois, criei o arquivo de configuração [log4j2.xml](microsservices/business/src/main/resources/log4j2.xml) e fiz com que todos os status de logs fossem impressos no console e apenas os WARNs e ERRORs fossem escritos nos arquivos [application-[yyyy-MM-dd].log](microsservices/business/logs).
+Depois, criei o arquivo de configuração [log4j2.xml](microsservices/business/src/main/resources/log4j2.xml) e fiz com que todos os status de logs fossem impressos no console e apenas os WARNs e ERRORs fossem escritos nos arquivos [business-[yyyy-MM-dd].log](microsservices/business/logs).
 
-Entretanto, ao realizar os testes, percebi que os logs dos testes estavam indo para o mesmo arquivo, e isso não me parece correto! Logo, criei um novo arquivo de configuração [log4j2.xml](microsservices/business/src/test/resources/log4j2.xml) apenas para o escopo de testes. Agora, os logs dos testes são salvos no arquivo [application-tests.log](microsservices/business/logs/application-tests.log).
+Entretanto, ao realizar os testes, percebi que os logs dos testes estavam indo para o mesmo arquivo, e isso não me parece correto! Logo, criei um novo arquivo de configuração [log4j2.xml](microsservices/business/src/test/resources/log4j2.xml) apenas para o escopo de testes.

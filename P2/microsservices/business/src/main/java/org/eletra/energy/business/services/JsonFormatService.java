@@ -2,6 +2,7 @@ package org.eletra.energy.business.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.Logger;
 import org.eletra.energy.business.models.dtos.ReceivedMessageDTO;
 import org.eletra.energy.business.models.dtos.SentMessageDTO;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class JsonFormatService {
@@ -18,7 +20,6 @@ public class JsonFormatService {
     private final ObjectMapper objectMapper;
     private final JmsTemplate jmsTemplate;
     private final Clock clock;
-    private final Logger logger;
 
     private final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -38,10 +39,10 @@ public class JsonFormatService {
 
         String outputMessage = objectMapper.writeValueAsString(sentMessageDTO);
 
-        logger.info("Converted JSON message:\n{}", outputMessage);
-        logger.info("Sending JSON message to training-converter.send_as_json");
+        log.info("Converted JSON message received from \"training-converter.receive_as_json\" queue:\n{}", outputMessage);
+        log.info("Sending JSON message to \"training-converter.send_as_json\" queue...");
         jmsTemplate.convertAndSend("training-converter.send_as_json", outputMessage);
-        logger.info("Message sent!\n");
+        log.info("Message sent to \"training-converter.send_as_json\"!\n");
     }
 
     private String formatSentAt(String raw) {
@@ -57,23 +58,23 @@ public class JsonFormatService {
 
     private void verifyReceivedMessageFormat(ReceivedMessageDTO dto) throws Exception {
         if (dto.getUser() == null) {
-            logger.error("User is missing in received message");
+            log.error("User is missing in received message");
             throw new Exception("User is missing in received message");
         }
         if (dto.getLog() == null) {
-            logger.error("Log is missing in received message");
+            log.error("Log is missing in received message");
             throw new Exception("Log is missing in received message");
         }
         if (dto.getUser().getId() == null || dto.getUser().getId().isEmpty()) {
-            logger.error("Invalid user ID in received message");
+            log.error("Invalid user ID in received message");
             throw new Exception("Invalid user ID in received message");
         }
         if (dto.getLog().getSentAt() == null || dto.getLog().getSentAt().isEmpty()) {
-            logger.error("Invalid sentAt in received message log");
+            log.error("Invalid sentAt in received message log");
             throw new Exception("Invalid sentAt in received message log");
         }
         if (dto.getLog().getMessage() == null || dto.getLog().getMessage().isEmpty()) {
-            logger.error("Invalid message content in received message log");
+            log.error("Invalid message content in received message log");
             throw new Exception("Invalid message content in received message log");
         }
     }
