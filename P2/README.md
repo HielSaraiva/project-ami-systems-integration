@@ -1,22 +1,30 @@
-## Projeto 2 - Alteração nas regras de negócio
+# Projeto 2 - Alteração nas regras de negócio
 
-**Lore**
+## Índice
+
+- [Lore](#lore)
+- [Pré-condição](#pré-condição)
+- [Atividade](#atividade)
+- [Pós-condição](#pós-condição)
+- [Passo-a-Passo](#passo-a-passo)
+
+## Lore
 
 O cliente mudou a regra de negócio 🤬🤬🤬. O cliente não quer mais salvar o nome de usuário, mas sim o ID desse usuário. Porém, o BUSINESS antigo não pode ser alterado pois já está sendo usado por outro projeto. Sendo assim, você precisa criar um BUSINESS novo, que repasse esses dados para a CONVERTER previamente criada. ALTERAR A CONVERTER NÃO É UMA OPÇÃO!
 
-**Pré-condição**
+## Pré-condição
 
 - Os serviços third-parties estão de pé e funcionando;
 - A converter criada na atividade passada.
 
-**Atividade**
+## Atividade
 
 - Criar um projeto novo (um módulo) que use maven, springboot e java 17;
 - Criar uma controller com um endpoint que leia da fila **training-converter.receive_as_json;**
 - Ler essa mensagem e converter o conteúdo dela para o JSON necessário na CONVERTER da atividade passada;
 - Enviar a mensagem para a fila **training-converter.send_as_json;**
 
-**Pós-condição**
+## Pós-condição
 
 - Uma BUSINESS foi criada;
 - Está recebendo dados da CONVERTER fornecida;
@@ -139,3 +147,34 @@ Depois, parti para o desenvolvimento dos testes, garantindo 100% de cobertura:
 ![Test Coverage](assets/image8.png)
 
 > **Observação:** Não há necessidade de realizar o teste direto do método main da Aplicação, visto que já há o teste de contexto!
+
+### 8. Logging com Apache Log4j2
+
+Vamos usar o [Log4j2](https://logging.apache.org/log4j/2.12.x/maven-artifacts.html) para realizar o logging do nosso microsserviço business.
+
+Primeiro, é necessário adicionar a seguinte dependência ao [pom.xml](microsservices/business/pom.xml):
+
+````
+<!-- Exclude Logback -->
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter</artifactId>
+   <exclusions>
+         <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+         </exclusion>
+   </exclusions>
+</dependency>
+<!-- Add Log4j2 -->
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-log4j2</artifactId>
+</dependency>
+````
+
+> **Observação:** O Spring boot utiliza o Logback como logging padrão! Verifique a [documentação](https://docs.spring.io/spring-boot/how-to/logging.html)!
+
+Depois, criei o arquivo de configuração [log4j2.xml](microsservices/business/src/main/resources/log4j2.xml) e fiz com que todos os status de logs fossem impressos no console e apenas os WARNs e ERRORs fossem escritos nos arquivos [application-[yyyy-MM-dd].log](microsservices/business/logs).
+
+Entretanto, ao realizar os testes, percebi que os logs dos testes estavam indo para o mesmo arquivo, e isso não me parece correto! Logo, criei um novo arquivo de configuração [log4j2.xml](microsservices/business/src/test/resources/log4j2.xml) apenas para o escopo de testes. Agora, os logs dos testes são salvos no arquivo [application-tests.log](microsservices/business/logs/application-tests.log).

@@ -1,4 +1,4 @@
-package org.eletra.energy.business.models;
+package org.eletra.energy.business.models.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

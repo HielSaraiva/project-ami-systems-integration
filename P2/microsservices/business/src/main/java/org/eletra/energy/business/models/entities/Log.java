@@ -1,12 +1,8 @@
-package org.eletra.energy.business.models;
+package org.eletra.energy.business.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter

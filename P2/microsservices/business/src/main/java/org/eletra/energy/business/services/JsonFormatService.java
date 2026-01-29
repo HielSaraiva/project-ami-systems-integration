@@ -2,9 +2,9 @@ package org.eletra.energy.business.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.Logger;
 import org.eletra.energy.business.models.dtos.ReceivedMessageDTO;
 import org.eletra.energy.business.models.dtos.SentMessageDTO;
-import org.slf4j.Logger;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
@@ -57,18 +57,23 @@ public class JsonFormatService {
 
     private void verifyReceivedMessageFormat(ReceivedMessageDTO dto) throws Exception {
         if (dto.getUser() == null) {
+            logger.error("User is missing in received message");
             throw new Exception("User is missing in received message");
         }
         if (dto.getLog() == null) {
+            logger.error("Log is missing in received message");
             throw new Exception("Log is missing in received message");
         }
         if (dto.getUser().getId() == null || dto.getUser().getId().isEmpty()) {
+            logger.error("Invalid user ID in received message");
             throw new Exception("Invalid user ID in received message");
         }
         if (dto.getLog().getSentAt() == null || dto.getLog().getSentAt().isEmpty()) {
+            logger.error("Invalid sentAt in received message log");
             throw new Exception("Invalid sentAt in received message log");
         }
         if (dto.getLog().getMessage() == null || dto.getLog().getMessage().isEmpty()) {
+            logger.error("Invalid message content in received message log");
             throw new Exception("Invalid message content in received message log");
         }
     }

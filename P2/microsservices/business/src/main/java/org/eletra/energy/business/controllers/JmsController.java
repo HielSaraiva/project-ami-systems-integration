@@ -1,9 +1,8 @@
 package org.eletra.energy.business.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.Logger;
 import org.eletra.energy.business.services.JsonFormatService;
-import org.slf4j.Logger;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Controller;
 

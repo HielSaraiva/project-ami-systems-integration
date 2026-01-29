@@ -1,7 +1,8 @@
 package org.eletra.energy.business.configs;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,6 +11,6 @@ public class LoggerConfig {
 
     @Bean
     public Logger logger() {
-        return LoggerFactory.getLogger("BusinessApplicationLogger");
+        return LogManager.getLogger("BusinessApplicationLogger");
     }
 }
