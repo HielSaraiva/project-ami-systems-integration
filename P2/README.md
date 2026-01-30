@@ -49,9 +49,9 @@ Adicionei essas dependências ao criar o Projeto, mesmo sabendo que não usarei 
 
 Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/business/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL e ao ActiveMQ Artemis.
 
-### 3. Criando modelo MessageModel.java e Controller JmsController.java
+### 3. Criando Models (dtos e entities) Controller JmsController.java
 
-Criei um modelo [MessageModel.java](microsservices/business/src/main/java/org/eletra/energy/business/models/MessageModel.java) e um controller [JmsController.java](microsservices/business/src/main/java/org/eletra/energy/business/controllers/JmsController.java) que se conecta à fila artemis para receber a mensagem JSON. Utilizei a injeção de dependências via construtor na classe Controller, visto que ``@Autowired`` está deprecated!
+Criei [modelos](microsservices/business/src/main/java/org/eletra/energy/business/models/) e um controller [JmsController.java](microsservices/business/src/main/java/org/eletra/energy/business/controllers/JmsController.java) que se conecta à fila artemis para receber a mensagem JSON. Utilizei a injeção de dependências via construtor na classe Controller, visto que ``@Autowired`` está deprecated!
 
 Ao rodar a aplicação, deve aparecer algo do tipo:
 
