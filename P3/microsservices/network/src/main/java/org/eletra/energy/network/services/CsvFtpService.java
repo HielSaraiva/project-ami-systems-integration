@@ -3,14 +3,12 @@ package org.eletra.energy.network.services;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-import org.apache.commons.net.ftp.FTPFile;
-import org.springframework.integration.file.remote.session.Session;
-import org.springframework.integration.file.remote.session.SessionFactory;
 import org.springframework.integration.ftp.session.DefaultFtpSessionFactory;
 import org.springframework.integration.ftp.session.FtpSession;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 
@@ -25,7 +23,7 @@ public class CsvFtpService {
 
         FtpSession session = ftpSessionFactory.getSession();
 
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(csv.getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(csv.getBytes(StandardCharsets.UTF_8));
         session.write(inputStream, "data_" + LocalDateTime.now().toString().replace(":", "-") + ".csv");
         session.close();
     }

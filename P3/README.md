@@ -28,7 +28,7 @@ Estivemos tentando contornar a situação, tratar de outra forma, mas… Não ti
 
 - Uma NETWORK foi criada;
 - Está recebendo dados da CONVERTER desenvolvida;
-- Os dados percebido estão sendo salvos em um arquivo CSV, dentro de um servidor FTP.
+- Os dados recebidos estão sendo salvos em um arquivo CSV, dentro de um servidor FTP.
 
 ## Passo-a-Passo
 
@@ -97,7 +97,7 @@ Ao rodar a aplicação, deve aparecer algo do tipo:
 
 ### 6. Criando classe Service para envio de arquivos CSV via FTP
 
-Primeiramente, tive que adicionar essas dependências:
+Primeiramente, tive que adicionar essa dependência:
 
 ````
 <dependency>
@@ -106,3 +106,11 @@ Primeiramente, tive que adicionar essas dependências:
     <version>7.0.2</version>
 </dependency>
 ````
+
+Depois, criei a classe de configuração [FtpConfig.java](microsservices/network/src/main/java/org/eletra/energy/network/configs/FtpConfig.java) para realizar a configuração inicial da nossa sessão FTP.
+
+Na sequência, criei a classe [CsvFtpService.java](microsservices/network/src/main/java/org/eletra/energy/network/services/CsvFtpService.java) para realizar o envio do arquivo .csv para o server FTP.
+
+Ao rodar, deve ser visto algo do tipo:
+
+![Csv sent](assets/image5.png)

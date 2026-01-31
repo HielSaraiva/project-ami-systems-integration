@@ -15,7 +15,6 @@
             sf.setUsername("ftp_server");
             sf.setPassword("ftp_server");
             sf.setClientMode(2);
-
             return sf;
         }
     }

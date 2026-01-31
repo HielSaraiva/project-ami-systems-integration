@@ -61,7 +61,6 @@ services:
       FTP_USER_NAME: ftp_server
       FTP_USER_PASS: ftp_server
       FTP_USER_HOME: /home/ftp_server
-      # Adicione estas linhas:
       PUBLICHOST: localhost
       ADDED_FLAGS: "-p 30000:30009" 
     ports:
