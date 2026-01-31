@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.eletra.energy.business.services.JsonFormatService;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.annotation.JmsListenerAnnotationBeanPostProcessor;
 import org.springframework.stereotype.Controller;
 
 @Log4j2

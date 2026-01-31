@@ -9,6 +9,8 @@
    - [Entregáveis](#entregáveis-1)
 - [Projeto 2 - Alteração nas regras de negócio](#projeto-2---alteração-nas-regras-de-negócio)
    - [Entregáveis](#entregáveis-2)
+- [Projeto 3 - O programador se demitiu...](#projeto-3---o-programador-se-demitiu)
+   - [Entregáveis](#entregáveis-3)
 
 ---
 
@@ -77,5 +79,19 @@ O cliente mudou a regra de negócio 🤬🤬🤬. O cliente não quer mais salva
 - **Projeto Java Spring:** [microsservices/business](P2/microsservices/business/)
 
 - **Relatório:** [README.md](./P2/README.md) 
+
+---
+
+## Projeto 3 - O programador se demitiu...
+
+Estivemos tentando contornar a situação, tratar de outra forma, mas… Não tivemos como. O outro desenvolvedor, que estava responsável por salvar os CSVs no servidor FTP, levou mais de 3 meses para terminar a atividade. Anunciou, na sexta-feira à tarde, que iria se desligar, ir para uma tal de RedSoft. Descobrimos também que não tinha muito desenvolvido… Não queríamos colocar uma tarefa com essa complexidade para você, sabemos que chegou agora. Mas o cliente está pedindo a funcionalidade com urgência.
+
+### Entregáveis
+
+- **DockerCompose:** [docker-compose.yml](/P3/docker-compose.yml)
+
+- **Projeto Java Spring:** [microsservices/network](P3/microsservices/network/)
+
+- **Relatório:** [README.md](./P3/README.md) 
 
 ---

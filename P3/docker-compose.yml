@@ -1,0 +1,77 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_server
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: trainee_integration_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/18/data
+    restart: always
+
+  artemis:
+    image: apache/activemq-artemis:latest
+    container_name: artemis_broker
+    environment:
+      ARTEMIS_USER: artemis
+      ARTEMIS_PASSWORD: artemis
+      ANONYMOUS_LOGIN: "false"
+    ports:
+      - "61616:61616" # Porta do protocolo OpenWire/Core
+      - "8161:8161"   # Console web
+    volumes:
+      - artemis_data:/var/lib/artemis-instance
+    restart: always
+
+  cronjob:
+    image: 10.160.0.21:5000/trainee-cronjob:latest
+    container_name: cronjob
+    environment:
+      BROKER_URL: artemis
+      BROKER_PORT: 61616
+      BROKER_USER: artemis
+      BROKER_PASSWORD: artemis
+      REDIS_HOST: redis_server
+      REDIS_PORT: 6379
+      DATASOURCE_JDBC: jdbc:postgresql://postgres_db:5432/trainee_integration_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "8082:8080"
+    volumes:
+      - cronjob_data:/data
+    restart: always
+
+  ftp-server:
+    image: stilliard/pure-ftpd:latest
+    container_name: ftp_server
+    environment:
+      FTP_USER_NAME: ftp_server
+      FTP_USER_PASS: ftp_server
+      FTP_USER_HOME: /home/ftp_server
+      # Adicione estas linhas:
+      PUBLICHOST: localhost
+      ADDED_FLAGS: "-p 30000:30009" 
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    restart: always
+
+volumes:
+  postgres_data:
+  redis_data:
+  artemis_data:
+  cronjob_data:
+  ftp_server_data:
