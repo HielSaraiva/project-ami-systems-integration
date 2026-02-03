@@ -53,7 +53,7 @@ public class CsvFtpServiceTests {
     }
 
     @Test
-    public void csvShouldBeSent() throws IOException {
+    public void csvShouldBeStorage() throws IOException {
         // Given
         String csv = """
                 user,time,message

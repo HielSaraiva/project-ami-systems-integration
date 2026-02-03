@@ -184,3 +184,77 @@ Depois, parti para o desenvolvimento dos testes, garantindo 100% de cobertura:
 ![Test Coverage](assets/image6.png)
 
 > **Observação:** Não há necessidade de realizar o teste direto do método main da Aplicação, visto que já há o teste de contexto!
+
+### Extra:
+
+Falando com o Quela, ele sugeriu que eu mesmo criasse um Server FTP para o meu serviço em vez de subir uma imagem em um container.
+
+Logo, vamos realizar essa substituição utilizando o [Apache FtpServer](https://mina.apache.org/ftpserver-project/).
+
+1) Vamos adicionar as seguintes dependências ao [pom.xml](microsservices/network/pom.xml):
+
+   ````
+   <dependency>
+      <groupId>org.apache.mina</groupId>
+      <artifactId>mina-core</artifactId>
+      <version>2.2.4</version>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.ftpserver</groupId>
+      <artifactId>ftplet-api</artifactId>
+      <version>1.2.1</version>
+      <scope>compile</scope>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.ftpserver</groupId>
+      <artifactId>ftpserver-core</artifactId>
+      <version>1.2.1</version>
+      <scope>compile</scope>
+   </dependency>
+   ````
+
+2) Vamos pausar o container ftp_server:
+
+   ![Ftp_server container paused](assets/image7.png)
+
+3) Vamos criar um ``@Bean`` responsável por inicializar o server FTP ao inicializar o microsservice ``network``
+
+   ````java
+   @Bean
+   public FtpServer ftpServer() throws Exception {
+      FtpServerFactory serverFactory = new FtpServerFactory();
+
+      ListenerFactory listenerFactory = new ListenerFactory();
+      listenerFactory.setPort(21);
+
+      DataConnectionConfigurationFactory dataConnFactory = new DataConnectionConfigurationFactory();
+      dataConnFactory.setPassivePorts("50000-50100");
+      listenerFactory.setDataConnectionConfiguration(dataConnFactory.createDataConnectionConfiguration());
+
+      serverFactory.addListener("default", listenerFactory.createListener());
+
+      BaseUser user = new BaseUser();
+      user.setName("ftp_server");
+      user.setPassword("ftp_server");
+
+      Path home = Paths.get(System.getProperty("user.home"), "ftp");
+      Files.createDirectories(home);
+      user.setHomeDirectory(home.toAbsolutePath().toString());
+
+      List<Authority> authorities = new ArrayList<>();
+      authorities.add(new WritePermission());
+      user.setAuthorities(authorities);
+
+      serverFactory.getUserManager().save(user);
+
+      FtpServer server = serverFactory.createServer();
+      server.start();
+      return server;
+   }
+   ````
+
+   > **Observação:** Verifique a [documentação](https://mina.apache.org/ftpserver-project/embedding_ftpserver.html)
+
+4) Agora, basta rodar o serviço ``network`` e verificar o log:
+
+   ![Network App Log](assets/image8.png)

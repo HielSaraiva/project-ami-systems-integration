@@ -59,7 +59,7 @@ public class JmsControllerTests {
     }
 
     @Test
-    public void test1() throws Exception {
+    public void csvShouldBeSentToStorage() throws Exception {
         // Given
         String message = """
                 user,time,message
