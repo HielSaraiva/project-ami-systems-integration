@@ -114,3 +114,73 @@ Na sequência, criei a classe [CsvFtpService.java](microsservices/network/src/ma
 Ao rodar, deve ser visto algo do tipo:
 
 ![Csv sent](assets/image5.png)
+
+### 7. Testes de Integração
+
+Desta vez, preparei o ambiente para realizar testes de integração utilizando [Testcontainers](https://testcontainers.com/guides/getting-started-with-testcontainers-for-java/#_add_testcontainers_dependencies) em conjunto com testes unitários, mas antes adicionei ao [pom.xml](/P3/microsservices/network/pom.xml) do projeto as seguintes dependências do Testcontainer para o Artemis ActiveMQ, PostgreSQL e Redis:
+
+`````java
+ <dependency>
+   <groupId>org.testcontainers</groupId>
+   <artifactId>testcontainers</artifactId>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.testcontainers</groupId>
+   <artifactId>junit-jupiter</artifactId>
+   <version>1.19.8</version>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.testcontainers</groupId>
+   <artifactId>testcontainers-activemq</artifactId>
+   <version>2.0.1</version>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.testcontainers</groupId>
+   <artifactId>testcontainers-postgresql</artifactId>
+   <version>2.0.1</version>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>com.redis</groupId>
+   <artifactId>testcontainers-redis</artifactId>
+   <version>2.2.2</version>
+   <scope>test</scope>
+</dependency>
+`````
+
+E também removi as seguintes configurações do Artemis, PostgreSQL e Redis presentes no [application.properties](microsservices/network/src/test/resources/application.properties)
+
+````
+# Datasource Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5434/trainee_integration_db
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.username=admin
+spring.datasource.password=admin
+
+# JPA, SQL Configuration
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Artemis Configuration
+spring.artemis.broker-url=tcp://localhost:61616
+spring.artemis.user=artemis
+spring.artemis.password=artemis
+````
+
+Também adicionei:
+
+````
+# Disable JMS Listeners for Tests
+spring.jms.listener.auto-startup=false
+````
+
+Depois, parti para o desenvolvimento dos testes, garantindo 100% de cobertura:
+
+![Test Coverage](assets/image6.png)
+
+> **Observação:** Não há necessidade de realizar o teste direto do método main da Aplicação, visto que já há o teste de contexto!

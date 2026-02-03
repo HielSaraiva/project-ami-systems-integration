@@ -1,16 +1,23 @@
-package org.eletra.energy.network;
+package org.eletra.energy.network.services;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 
+import java.io.IOException;
+
 import static org.eletra.energy.network.configs.TestcontainersConfig.*;
-import static org.eletra.energy.network.configs.TestcontainersConfig.ftpContainer;
 
 @SpringBootTest
-class NetworkApplicationTests {
+public class CsvFtpServiceTests {
+
+    @Autowired
+    private CsvFtpService csvFtpService;
 
     @DynamicPropertySource
     static void ftpProperties(DynamicPropertyRegistry registry) {
@@ -34,7 +41,6 @@ class NetworkApplicationTests {
         registry.add("spring.datasource.driver-class-name", postgresContainer::getDriverClassName);
         registry.add("spring.datasource.username", postgresContainer::getUsername);
         registry.add("spring.datasource.password", postgresContainer::getPassword);
-        registry.add("spring.jpa.database-platform", () -> "org.hibernate.dialect.PostgreSQLDialect");
         registry.add("spring.jpa.hibernate.ddl-auto", () -> "update");
         registry.add("spring.jpa.show-sql", () -> "true");
     }
@@ -47,6 +53,16 @@ class NetworkApplicationTests {
     }
 
     @Test
-    void contextLoads() {
+    public void csvShouldBeSent() throws IOException {
+        // Given
+        String csv = """
+                user,time,message
+                "d1a1b3ca-0884-4701-a219-6ada5c638812","2026-02-02 12:34:21","Until I was 25 I thought the only response to ‘I love you’ was ‘Oh crap!'"
+                """;
+
+        // When & Then
+        Assertions.assertDoesNotThrow(() -> {
+            csvFtpService.execute(csv);
+        });
     }
 }
