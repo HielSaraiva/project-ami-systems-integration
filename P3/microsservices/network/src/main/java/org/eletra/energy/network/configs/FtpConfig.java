@@ -21,26 +21,26 @@
     @Configuration
     public class FtpConfig {
 
-        @Value("${application.ftp.pasv_ports}")
-        private String ftpPasvPorts;
+    @Value("${application.ftp.pasv_ports}")
+    private String ftpPasvPorts;
 
-        @Value("${application.ftp.username}")
-        private String ftpClientUsername;
+    @Value("${application.ftp.username}")
+    private String ftpClientUsername;
 
-        @Value("${application.ftp.password}")
-        private String ftpClientPassword;
+    @Value("${application.ftp.password}")
+    private String ftpClientPassword;
 
-        @Value("${application.ftp.host}")
-        private String ftpHost;
+    @Value("${application.ftp.host}")
+    private String ftpHost;
 
-        @Value("${application.ftp.port}")
-        private Integer ftpPort;
+    @Value("${application.ftp.port}")
+    private Integer ftpPort;
 
-        @Value("${application.ftp.listener}")
-        private String ftpListener;
+    @Value("${application.ftp.listener}")
+    private String ftpListener;
 
-        @Value("${application.ftp.root_directory}")
-        private String ftpRootDirectory;
+    @Value("${application.ftp.root_directory}")
+    private String ftpRootDirectory;
 
         @Bean
         public DefaultFtpSessionFactory ftpSessionFactory() {

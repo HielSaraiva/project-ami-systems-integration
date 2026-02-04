@@ -296,3 +296,28 @@ Conversando com o Quela novamente, ele me mostrou uma forma mais profissional de
    3) Por último, clique em Adicionar variável de ambiente
 
       ![Environment Variables](assets/image11.png)
+   
+3) Depois, basta usar o annotation ``@Value`` para fazer referência a essses valores configurados no [application.properties](microsservices/network/src/main/resources/application.properties)
+
+   ````java
+      @Value("${application.ftp.pasv_ports}")
+      private String ftpPasvPorts;
+
+      @Value("${application.ftp.username}")
+      private String ftpClientUsername;
+
+      @Value("${application.ftp.password}")
+      private String ftpClientPassword;
+
+      @Value("${application.ftp.host}")
+      private String ftpHost;
+
+      @Value("${application.ftp.port}")
+      private Integer ftpPort;
+
+      @Value("${application.ftp.listener}")
+      private String ftpListener;
+
+      @Value("${application.ftp.root_directory}")
+      private String ftpRootDirectory;
+   ````
