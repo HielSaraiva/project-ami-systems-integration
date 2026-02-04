@@ -4,15 +4,14 @@
     import org.apache.ftpserver.FtpServer;
     import org.apache.ftpserver.FtpServerFactory;
     import org.apache.ftpserver.ftplet.Authority;
-    import org.apache.ftpserver.ftplet.FtpException;
     import org.apache.ftpserver.listener.ListenerFactory;
     import org.apache.ftpserver.usermanager.impl.BaseUser;
     import org.apache.ftpserver.usermanager.impl.WritePermission;
+    import org.springframework.beans.factory.annotation.Value;
     import org.springframework.context.annotation.Bean;
     import org.springframework.context.annotation.Configuration;
     import org.springframework.integration.ftp.session.DefaultFtpSessionFactory;
 
-    import java.io.IOException;
     import java.nio.file.Files;
     import java.nio.file.Path;
     import java.nio.file.Paths;
@@ -22,13 +21,34 @@
     @Configuration
     public class FtpConfig {
 
+        @Value("${application.ftp.pasv_ports}")
+        private String ftpPasvPorts;
+
+        @Value("${application.ftp.username}")
+        private String ftpClientUsername;
+
+        @Value("${application.ftp.password}")
+        private String ftpClientPassword;
+
+        @Value("${application.ftp.host}")
+        private String ftpHost;
+
+        @Value("${application.ftp.port}")
+        private Integer ftpPort;
+
+        @Value("${application.ftp.listener}")
+        private String ftpListener;
+
+        @Value("${application.ftp.root_directory}")
+        private String ftpRootDirectory;
+
         @Bean
         public DefaultFtpSessionFactory ftpSessionFactory() {
             DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();
-            sf.setHost("localhost");
-            sf.setPort(21);
-            sf.setUsername("ftp_server");
-            sf.setPassword("ftp_server");
+            sf.setHost(ftpHost);
+            sf.setPort(ftpPort);
+            sf.setUsername(ftpClientUsername);
+            sf.setPassword(ftpClientPassword);
             sf.setClientMode(2);
             return sf;
         }
@@ -38,19 +58,19 @@
             FtpServerFactory serverFactory = new FtpServerFactory();
 
             ListenerFactory listenerFactory = new ListenerFactory();
-            listenerFactory.setPort(21);
+            listenerFactory.setPort(ftpPort);
 
             DataConnectionConfigurationFactory dataConnFactory = new DataConnectionConfigurationFactory();
-            dataConnFactory.setPassivePorts("50000-50100");
+            dataConnFactory.setPassivePorts(ftpPasvPorts);
             listenerFactory.setDataConnectionConfiguration(dataConnFactory.createDataConnectionConfiguration());
 
-            serverFactory.addListener("default", listenerFactory.createListener());
+            serverFactory.addListener(ftpListener, listenerFactory.createListener());
 
             BaseUser user = new BaseUser();
-            user.setName("ftp_server");
-            user.setPassword("ftp_server");
+            user.setName(ftpClientUsername);
+            user.setPassword(ftpClientPassword);
 
-            Path home = Paths.get(System.getProperty("user.home"), "ftp");
+            Path home = Paths.get(System.getProperty("user.home"), ftpRootDirectory);
             Files.createDirectories(home);
             user.setHomeDirectory(home.toAbsolutePath().toString());
 

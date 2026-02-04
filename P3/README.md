@@ -187,6 +187,8 @@ Depois, parti para o desenvolvimento dos testes, garantindo 100% de cobertura:
 
 ### Extra:
 
+#### Server FTP Próprio
+
 Falando com o Quela, ele sugeriu que eu mesmo criasse um Server FTP para o meu serviço em vez de subir uma imagem em um container.
 
 Logo, vamos realizar essa substituição utilizando o [Apache FtpServer](https://mina.apache.org/ftpserver-project/).
@@ -224,6 +226,9 @@ Logo, vamos realizar essa substituição utilizando o [Apache FtpServer](https:/
    public FtpServer ftpServer() throws Exception {
       FtpServerFactory serverFactory = new FtpServerFactory();
 
+      /* O Listener é responsável por ouvir no socket de rede e quando o cliente se conecta,
+         ele cria a sessão do usuário, executa comandos e assim por diante.
+      */
       ListenerFactory listenerFactory = new ListenerFactory();
       listenerFactory.setPort(21);
 
@@ -241,6 +246,7 @@ Logo, vamos realizar essa substituição utilizando o [Apache FtpServer](https:/
       Files.createDirectories(home);
       user.setHomeDirectory(home.toAbsolutePath().toString());
 
+      // Aqui nós configuramos a permissão de escrita do nosso cliente user.
       List<Authority> authorities = new ArrayList<>();
       authorities.add(new WritePermission());
       user.setAuthorities(authorities);
@@ -253,8 +259,40 @@ Logo, vamos realizar essa substituição utilizando o [Apache FtpServer](https:/
    }
    ````
 
-   > **Observação:** Verifique a [documentação](https://mina.apache.org/ftpserver-project/embedding_ftpserver.html)
+   > **Observação:** Verifique o [tutorial](https://mina.apache.org/ftpserver-project/embedding_ftpserver.html)
 
 4) Agora, basta rodar o serviço ``network`` e verificar o log:
 
    ![Network App Log](assets/image8.png)
+
+#### Variáveis de Ambiente
+
+Conversando com o Quela novamente, ele me mostrou uma forma mais profissional de lidar com as variáveis de ambiente da aplicação.
+
+1) Dentro do [application.properties](microsservices/network/src/main/resources/application.properties) nós podemos settar as nossas propriedades de configuração: 
+
+   ````
+   # Application Variables
+   application.ftp.pasv_ports=${APP_FTP_PASV_PORTS:50000-50100}
+   application.ftp.port=${APP_FTP_PORT:21}
+   application.ftp.host=${APP_FTP_HOST:localhost}
+   application.ftp.username=${APP_FTP_USERNAME:ftp_user}
+   application.ftp.password=${APP_FTP_PASSWORD:ftp_password}
+   application.ftp.listener=${APP_FTP_LISTENER:default}
+   application.ftp.root_directory=${APP_FTP_ROOT_DIRECTORY:ftp}
+   ````
+   > **Obs.:** a notação ``${<VAR_ENV_NAME>:<DEFAULT_VALUE>}`` serve para atrelar o valor da propriedade de configuração a uma variável de ambiente e também para settar um valor default para ela.
+
+2) Agora, onde configuro os valores das variáveis de ambiente? Existem algumas formas, mas a que eu achei mais adequada é utilizando as Configurações de Run/Debug do serviço, na IntelliJ IDEA:
+
+   1) Clique em Editar Configurações
+      
+      ![Configuration Path](assets/image9.png)
+
+   2) Depois, clique em Editar variáveis de ambiente
+
+      ![Run/Debug Configurations](assets/image10.png)
+
+   3) Por último, clique em Adicionar variável de ambiente
+
+      ![Environment Variables](assets/image11.png)
