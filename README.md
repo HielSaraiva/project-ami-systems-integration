@@ -95,3 +95,19 @@ Estivemos tentando contornar a situação, tratar de outra forma, mas… Não ti
 - **Relatório:** [README.md](./P3/README.md) 
 
 ---
+
+## Projeto 4 - O projeto evoluiu!
+
+Felizmente está tudo dando certo, e agora temos um fluxo de ponta-a-ponta funcional!
+
+Porém, nossos arquitetos viram que, a solução como está hoje, não é muito boa para que possamos identificar pontos de falhas, e manter históricos. Então, nesse momento, precisaremos adaptar a solução para usar um banco de dados!
+
+### Entregáveis
+
+- **DockerCompose:** [docker-compose.yml](/P4/docker-compose.yml)
+
+- **Projetos Java Spring:** [microsservices/](P4/microsservices)
+
+- **Relatório:** [README.md](./P4/README.md) 
+
+---
