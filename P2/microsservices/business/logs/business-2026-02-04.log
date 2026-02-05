@@ -1,0 +1,3 @@
+2026-02-04 09:09:56.668 WARN  20436 --- [  restartedMain] o.f.c.i.c.DbValidate                     :45 - No migrations found. Are your locations set up correctly?
+2026-02-04 09:09:57.385 WARN  20436 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-04 09:09:58.046 WARN  20436 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
