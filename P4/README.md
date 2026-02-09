@@ -20,7 +20,7 @@ Porém, nossos arquitetos viram que, a solução como está hoje, não é muito 
 - A CONVERTER criada nas atividades passadas;
 - A BUSINESS criada nas atividades passadas;
 - A NETWORK criada na atividade passada;
-- .proto da API grpc do cliente.
+- .proto da API gRPC do cliente.
 
 ## Atividade
  
@@ -60,7 +60,7 @@ docker compose up -d
 
 Como vamos precisar alterar os microsserviços anteriormente construídos, vou criar cópias deles dentro da pasta [microsservices](microsservices/), pois não quero alterar o que foi já foi construído.
 
-Dito isso, vou aproveitar o momento para realizar melhorias nos microsserviços ``converter e business``:
+Dito isso, vou aproveitar o momento para realizar melhorias nos microsserviços ``converter`` e ``business``:
 
 **Melhorias:**
 
@@ -82,17 +82,17 @@ Adicionei essas dependências ao criar o Projeto, incluindo a dependência do fr
 
 ![Dependências do Projeto Java Spring](assets/image2.png)
 
-> **Observação:** Consulte a documentação do Spring: [HELP.md](microsservices/???/HELP.md)
+> **Observação:** Consulte a documentação do Spring: [HELP.md](microsservices/network-grpc/HELP.md)
 
 ### 5. Configurando application.properties
 
-Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/???/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL e ao ActiveMQ Artemis.
+Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/network-grpc/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL e ao ActiveMQ Artemis.
 
 ### 6. Logging com Apache Log4j2
 
 Vamos usar o [Log4j2](https://logging.apache.org/log4j/2.12.x/maven-artifacts.html) para realizar o logging do nosso microsserviço network.
 
-Primeiro, é necessário adicionar a seguinte dependência ao [pom.xml](microsservices/???/pom.xml):
+Primeiro, é necessário adicionar a seguinte dependência ao [pom.xml](microsservices/network-grpc/pom.xml):
 
 ````
 <!-- Exclude Logback -->
@@ -115,8 +115,10 @@ Primeiro, é necessário adicionar a seguinte dependência ao [pom.xml](microsse
 
 > **Observação:** O Spring boot utiliza o Logback como logging padrão! Verifique a [documentação](https://docs.spring.io/spring-boot/how-to/logging.html)!
 
-Depois, criei o arquivo de configuração [log4j2.xml](microsservices/???/src/main/resources/log4j2.xml) e fiz com que todos os status de logs fossem impressos no console e apenas os WARNs e ERRORs fossem escritos nos arquivos [???-[yyyy-MM-dd].log](microsservices/???/logs).
+Depois, criei o arquivo de configuração [log4j2.xml](microsservices/network-grpc/src/main/resources/log4j2.xml) e fiz com que todos os status de logs fossem impressos no console e apenas os WARNs e ERRORs fossem escritos nos arquivos [network-grpc-[yyyy-MM-dd].log](microsservices/network-grpc/logs).
 
-Entretanto, ao realizar os testes, percebi que os logs dos testes estavam indo para o mesmo arquivo, e isso não me parece correto! Logo, criei um novo arquivo de configuração [log4j2.xml](microsservices/???/src/test/resources/log4j2.xml) apenas para o escopo de testes.
+Entretanto, ao realizar os testes, percebi que os logs dos testes estavam indo para o mesmo arquivo, e isso não me parece correto! Logo, criei um novo arquivo de configuração [log4j2.xml](microsservices/network-grpc/src/test/resources/log4j2.xml) apenas para o escopo de testes.
 
 Para usar o logger do log4j2, basta usar a annotation ``@Log4j2`` na respectiva classe.
+
+### 7. 
