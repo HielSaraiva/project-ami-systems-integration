@@ -86,7 +86,7 @@ Adicionei essas dependências ao criar o Projeto, incluindo a dependência do fr
 
 ### 5. Configurando application.properties
 
-Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/network-grpc/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL e ao ActiveMQ Artemis.
+Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/network-grpc/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL, ao ActiveMQ Artemis e ao gRPC.
 
 ### 6. Logging com Apache Log4j2
 
@@ -121,4 +121,28 @@ Entretanto, ao realizar os testes, percebi que os logs dos testes estavam indo p
 
 Para usar o logger do log4j2, basta usar a annotation ``@Log4j2`` na respectiva classe.
 
-### 7. 
+### 7. Modelagem do Banco
+
+Durante a fase de modelagem do Banco de Dados, realizei a criação de duas tabelas: ``tickets`` e ``processes``, e dois enums: ``ticket_status`` e ``process_status``.
+
+A relação entre as tabelas é 1:N, veja no diagrama:
+
+![Tables Diagram](assets/image3.png)
+
+### 8. Fluxo do Sistema
+
+Eu projetei o fluxo do sistema da seguinte forma:
+
+![System Flow](assets/image4.png)
+
+1. O server gRPC: ``network-grpc``, ao receber a requisição, vai criar um ticket com os campos: ``id``, ``status``, ``payload``, ``created_at`` e ``updated_at``, sendo o ``payload`` a mensagem enviada pelo cliente gRPC, o ``created_at`` o tempo de criação da tupla, atribuído automaticamente, e o ``status`` um enum que representa o estado do ticket, obviamente. Depois de criar a tupla com esses valores e armazenar no banco, o server gRPC vai enviar o id do ticket criado via fila para o próximo serviço: ``business``.
+
+2. O serviço ``business``, ao receber o id do ticket, vai criar um processo com os campos: ``id``, ``ticket_id``, ``status``, ``started_at``, ``finished_at``, ``payload`` e ``type``, sendo ``ticket_id`` o id recebido via fila e ``type`` o serviço atual: ``BUSINESS``, ``CONVERTER`` ou ``NETWORK``. Depois disso, vai buscar no banco o payload do ticket corresponde a esse ``id`` e aplicará a lógica de negócio. Na sequência, irá salvar o ``payload`` do processo no banco e, após enviar o id do processo atual via fila para o próximo serviço: ``converter``, mudará o ``status`` do processo para ``SUCCESS``. 
+
+3. O serviço ``converter``, ao receber o id do processo, vai criar um processo com os campos: ``id``, ``ticket_id``, ``status``, ``started_at``, ``finished_at``, ``payload`` e ``type``, sendo ``ticket_id`` o ticket_id do processo cujo id foi recebido via fila e ``type`` o serviço atual: ``BUSINESS``, ``CONVERTER`` ou ``NETWORK``. Depois disso, vai buscar no banco o payload do processo corresponde ao ``id`` recebido via fila e aplicará a lógica de negócio. Na sequência, irá salvar o ``payload`` do processo no banco e, após enviar o id do processo atual via fila para o próximo serviço: ``network``, mudará o ``status`` do processo para ``SUCCESS``. 
+
+4. O serviço ``network``, ao receber o id do processo, vai criar um processo com os campos: ``id``, ``ticket_id``, ``status``, ``started_at``, ``finished_at``, ``payload`` e ``type``, sendo ``ticket_id`` o ticket_id do processo cujo id foi recebido via fila e ``type`` o serviço atual: ``BUSINESS``, ``CONVERTER`` ou ``NETWORK``. Depois disso, vai buscar no banco o payload do processo corresponde ao ``id`` recebido via fila e aplicará a lógica de negócio. Na sequência, irá salvar o ``payload`` do processo no banco e, após fazer o upload do arquivo .csv no Server FTP, mudará o ``status`` do processo para ``SUCCESS`` e o ``status`` do ticket para ``DONE``. 
+
+> **Obs.:** Utilizei o envio do process_id via fila ao invés do ticket_id nos serviços: ``business`` e ``converter`` pois queria salvar o histórico dos payloads. Mandando sempre o ``ticket_id`` não possibilitaria isso...
+
+### 9. Configurando do network-grpc
