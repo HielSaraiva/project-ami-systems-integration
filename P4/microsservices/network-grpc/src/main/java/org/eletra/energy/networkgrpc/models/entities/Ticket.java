@@ -1,0 +1,44 @@
+package org.eletra.energy.networkgrpc.models.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.eletra.energy.networkgrpc.models.enums.TicketStatus;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
+
+import java.time.Instant;
+import java.util.UUID;
+
+@Entity
+@Table(name="tickets")
+@Data
+@NoArgsConstructor
+public class Ticket {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
+
+    @Column(name = "payload", columnDefinition = "TEXT")
+    private String payload;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Instant createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    public Ticket(TicketStatus status, String payload) {
+        this.status = status;
+        this.payload = payload;
+    }
+}

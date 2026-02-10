@@ -145,4 +145,12 @@ Eu projetei o fluxo do sistema da seguinte forma:
 
 > **Obs.:** Utilizei o envio do process_id via fila ao invés do ticket_id nos serviços: ``business`` e ``converter`` pois queria salvar o histórico dos payloads. Mandando sempre o ``ticket_id`` não possibilitaria isso...
 
-### 9. Configurando do network-grpc
+### 9. Configurando network-grpc
+
+0. Criei o arquivo .proto
+
+1. Dei um mvn clean package para gerar as classes do protobuf de acordo com o .proto.
+
+2. Coloquei a pasta do protobuf, onde são geradas as classes do protobuf, como Generated Source Root.
+
+3. Corrigi as entidades, adicionei o columnDefinition = "TEXT" na coluna de payload, pois o Hibernate estava sobrescrevendo minha configuração da coluna.
