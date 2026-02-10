@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eletra.energy.networkgrpc.models.enums.TicketStatus;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JdbcType;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
@@ -14,7 +13,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name="tickets")
+@Table(name = "tickets")
 @Data
 @NoArgsConstructor
 public class Ticket {
@@ -23,7 +22,8 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(columnDefinition = "ticket_status")
     private TicketStatus status;
 
     @Column(name = "payload", columnDefinition = "TEXT")

@@ -53,7 +53,7 @@ public class JsonToCsvService {
 
         log.info("Converted JSON message:\n{}", trimmed);
 
-        log.info("Sending CSV message to \"training-converter.send_as_csv\" queue...");
+        log.info("Sending CSV message to \"training-converter.send_as_csv\" queue...");training-converter.send_as_csv
         jmsTemplate.convertAndSend("training-converter.send_as_csv", trimmed);
         log.info("Message sent to \"training-converter.send_as_csv\"!\n");
     }

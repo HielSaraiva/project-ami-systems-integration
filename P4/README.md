@@ -154,3 +154,7 @@ Eu projetei o fluxo do sistema da seguinte forma:
 2. Coloquei a pasta do protobuf, onde são geradas as classes do protobuf, como Generated Source Root.
 
 3. Corrigi as entidades, adicionei o columnDefinition = "TEXT" na coluna de payload, pois o Hibernate estava sobrescrevendo minha configuração da coluna.
+
+4. Renomeei a classe GrpService e os métodos do .proto
+
+5. 

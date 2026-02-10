@@ -823,7 +823,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
 	at jdk.proxy4/jdk.proxy4.$Proxy161.save(Unknown Source)
 	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:29)
-	at org.eletra.energy.networkgrpc.services.TicketGrpcService.createTicket(TicketGrpcService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTicket(TicketGrpcService.java:21)
 	at org.eletra.energy.networkgrpc.grpc.TicketServiceGrpc$MethodHandlers.invoke(TicketServiceGrpc.java:246)
 	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
 	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
@@ -898,7 +898,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
 	at jdk.proxy4/jdk.proxy4.$Proxy161.save(Unknown Source)
 	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:29)
-	at org.eletra.energy.networkgrpc.services.TicketGrpcService.createTicket(TicketGrpcService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTicket(TicketGrpcService.java:21)
 	at org.eletra.energy.networkgrpc.grpc.TicketServiceGrpc$MethodHandlers.invoke(TicketServiceGrpc.java:246)
 	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
 	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
@@ -973,7 +973,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
 	at jdk.proxy4/jdk.proxy4.$Proxy161.save(Unknown Source)
 	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:29)
-	at org.eletra.energy.networkgrpc.services.TicketGrpcService.createTicket(TicketGrpcService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTicket(TicketGrpcService.java:21)
 	at org.eletra.energy.networkgrpc.grpc.TicketServiceGrpc$MethodHandlers.invoke(TicketServiceGrpc.java:246)
 	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
 	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
@@ -1048,7 +1048,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
 	at jdk.proxy4/jdk.proxy4.$Proxy161.save(Unknown Source)
 	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:29)
-	at org.eletra.energy.networkgrpc.services.TicketGrpcService.createTicket(TicketGrpcService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTicket(TicketGrpcService.java:21)
 	at org.eletra.energy.networkgrpc.grpc.TicketServiceGrpc$MethodHandlers.invoke(TicketServiceGrpc.java:246)
 	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
 	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
@@ -1101,3 +1101,752 @@ Caused by: org.postgresql.util.PSQLException: ERROR: value too long for type cha
 	... 46 more
 2026-02-10 12:37:46.781 WARN  28120 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
 2026-02-10 12:37:48.147 WARN  28120 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 12:51:12.252 WARN  20040 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 12:51:13.762 WARN  20040 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 12:52:43.385 WARN  20040 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 12:52:43.594 WARN  20040 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 12:52:45.979 WARN  20040 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 12:52:46.179 WARN  20040 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:03:28.416 WARN  32344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:03:29.979 WARN  32344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:07:56.322 ERROR 32344 --- [  restartedMain] t.s.DeferredServletContainerInitializers :63 - Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanCreationException. Message: Error creating bean with name 'grpcServlet' defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.class]: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@593b3060] failed
+2026-02-10 13:07:56.329 WARN  32344 --- [  restartedMain] ConfigServletWebServerApplicationContext :628 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-02-10 13:07:56.352 ERROR 32344 --- [  restartedMain] o.s.b.SpringApplication                  :863 - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.eletra.energy.networkgrpc.NetworkGrpcApplication.main(NetworkGrpcApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:150)
+	at org.springframework.boot.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:110)
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:408)
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:166)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164)
+	... 13 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcServlet' defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.class]: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@593b3060] failed
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1362)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:231)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:222)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:107)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:96)
+	at org.springframework.boot.web.context.servlet.WebApplicationContextInitializer.initialize(WebApplicationContextInitializer.java:53)
+	at org.springframework.boot.tomcat.servlet.DeferredServletContainerInitializers.onStartup(DeferredServletContainerInitializers.java:55)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4416)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1162)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1158)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:714)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:780)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1162)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1158)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:714)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:201)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:410)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:864)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:435)
+	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:131)
+	... 18 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@593b3060] failed
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:183)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:72)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:152)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 57 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@593b3060] failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:367)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansWithAnnotation(DefaultListableBeanFactory.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansWithAnnotation(AbstractApplicationContext.java:1450)
+	at org.springframework.grpc.internal.ApplicationContextBeanLookupUtils.getOrderedBeansWithAnnotation(ApplicationContextBeanLookupUtils.java:66)
+	at org.springframework.grpc.server.service.DefaultGrpcServiceDiscoverer.listServiceNames(DefaultGrpcServiceDiscoverer.java:57)
+	at org.springframework.boot.grpc.server.autoconfigure.GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.grpcServlet(GrpcServerFactoryAutoConfiguration.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:155)
+	... 60 more
+Caused by: java.lang.NoClassDefFoundError: org/eletra/energy/networkgrpc/services/TicketService
+	at java.base/java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3375)
+	at java.base/java.lang.Class.getDeclaredConstructors(Class.java:2557)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:362)
+	... 78 more
+Caused by: java.lang.ClassNotFoundException: org.eletra.energy.networkgrpc.services.TicketService
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:469)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:123)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	... 82 more
+2026-02-10 13:07:58.352 WARN  32344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:07:58.521 WARN  32344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:09:30.438 WARN  32344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:09:30.663 WARN  32344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:09:33.528 WARN  32344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:09:33.723 WARN  32344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:09:36.438 WARN  32344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:09:36.734 WARN  32344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:09:39.206 WARN  32344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:09:39.357 WARN  32344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:11:41.810 ERROR 32344 --- [  restartedMain] t.s.DeferredServletContainerInitializers :63 - Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanCreationException. Message: Error creating bean with name 'grpcServlet' defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.class]: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@a695dc0] failed
+2026-02-10 13:11:41.813 WARN  32344 --- [  restartedMain] ConfigServletWebServerApplicationContext :628 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-02-10 13:11:41.819 ERROR 32344 --- [  restartedMain] o.s.b.SpringApplication                  :863 - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.eletra.energy.networkgrpc.NetworkGrpcApplication.main(NetworkGrpcApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:150)
+	at org.springframework.boot.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:110)
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:408)
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:166)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164)
+	... 13 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcServlet' defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.class]: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@a695dc0] failed
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1362)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:231)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:222)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:107)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:96)
+	at org.springframework.boot.web.context.servlet.WebApplicationContextInitializer.initialize(WebApplicationContextInitializer.java:53)
+	at org.springframework.boot.tomcat.servlet.DeferredServletContainerInitializers.onStartup(DeferredServletContainerInitializers.java:55)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4416)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1162)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1158)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:714)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:780)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1162)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1158)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:714)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:201)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:410)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:864)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:435)
+	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:131)
+	... 18 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@a695dc0] failed
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:183)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:72)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:152)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 57 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionGrpcService': Resolution of declared constructors on bean Class [org.eletra.energy.networkgrpc.services.TransactionGrpcService] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@a695dc0] failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:367)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansWithAnnotation(DefaultListableBeanFactory.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansWithAnnotation(AbstractApplicationContext.java:1450)
+	at org.springframework.grpc.internal.ApplicationContextBeanLookupUtils.getOrderedBeansWithAnnotation(ApplicationContextBeanLookupUtils.java:66)
+	at org.springframework.grpc.server.service.DefaultGrpcServiceDiscoverer.listServiceNames(DefaultGrpcServiceDiscoverer.java:57)
+	at org.springframework.boot.grpc.server.autoconfigure.GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.grpcServlet(GrpcServerFactoryAutoConfiguration.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:155)
+	... 60 more
+Caused by: java.lang.NoClassDefFoundError: org/eletra/energy/networkgrpc/services/TicketService
+	at java.base/java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3375)
+	at java.base/java.lang.Class.getDeclaredConstructors(Class.java:2557)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:362)
+	... 78 more
+Caused by: java.lang.ClassNotFoundException: org.eletra.energy.networkgrpc.services.TicketService
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:469)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:123)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	... 82 more
+2026-02-10 13:16:33.920 WARN  34252 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:16:35.671 WARN  34252 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:17:55.482 ERROR 34252 --- [  restartedMain] t.s.DeferredServletContainerInitializers :63 - Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanCreationException. Message: Error creating bean with name 'grpcServlet' defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration$GrpcServletConfiguration.class]: Failed to instantiate [org.springframework.boot.web.servlet.ServletRegistrationBean]: Factory method 'grpcServlet' threw exception with message: Error creating bean with name 'transactionGrpcService' defined in file [C:\Users\hiel.saraiva\projects\project-ami-systems-integration\P4\microsservices\network-grpc\target\classes\org\eletra\energy\networkgrpc\services\TransactionGrpcService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.eletra.energy.networkgrpc.services.TicketService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2026-02-10 13:17:55.486 WARN  34252 --- [  restartedMain] ConfigServletWebServerApplicationContext :628 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-02-10 13:17:55.514 ERROR 34252 --- [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   :40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in org.eletra.energy.networkgrpc.services.TransactionGrpcService required a bean of type 'org.eletra.energy.networkgrpc.services.TicketService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.eletra.energy.networkgrpc.services.TicketService' in your configuration.
+
+2026-02-10 13:17:57.981 WARN  34252 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:17:58.258 WARN  34252 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:18:27.610 WARN  34252 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:18:27.807 WARN  34252 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:24:54.645 WARN  34252 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:24:54.894 WARN  34252 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:28:56.968 WARN  1560 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:28:58.704 WARN  1560 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:31:53.329 WARN  6620 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:31:54.842 WARN  6620 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:34:54.236 WARN  31784 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:34:55.813 WARN  31784 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:39:37.472 WARN  31784 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:39:37.633 WARN  31784 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:44:03.280 WARN  40248 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:44:04.742 WARN  40248 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:44:05.442 WARN  40248 --- [  restartedMain] ConfigServletWebServerApplicationContext :628 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-02-10 13:44:05.500 ERROR 40248 --- [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   :40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 50090 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 50090 or configure this application to listen on another port.
+
+2026-02-10 13:44:26.654 WARN  23896 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:44:28.014 WARN  23896 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:45:27.079 WARN  24548 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:45:28.383 WARN  24548 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 13:47:06.282 WARN  32828 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 13:47:07.855 WARN  32828 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:17:20.306 WARN  15544 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:17:22.077 WARN  15544 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:17:29.968 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :143 - HHH000247: ErrorCode: 0, SQLState: 42804
+2026-02-10 14:17:29.968 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :144 - ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+2026-02-10 14:17:29.993 ERROR 15544 --- [ault-executor-0] i.g.i.SerializingExecutor                :136 - Exception while executing runnable io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed@39a24c39
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]; SQL [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:199)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:557)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:794)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:757)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:687)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:408)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy4/jdk.proxy4.$Proxy158.save(Unknown Source)
+	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTransaction(TransactionGrpcService.java:30)
+	at org.eletra.energy.networkgrpc.grpc.EletraISServiceGrpc$MethodHandlers.invoke(EletraISServiceGrpc.java:246)
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:184)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:145)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:53)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:66)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:180)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:120)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:93)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:108)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:634)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:505)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:381)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireFlush(SessionImpl.java:1489)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:481)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2116)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2038)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:410)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:166)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commitNoRollbackOnly(JdbcResourceLocalTransactionCoordinatorImpl.java:248)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:242)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:89)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:553)
+	... 23 more
+Caused by: org.postgresql.util.PSQLException: ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:181)
+	... 46 more
+2026-02-10 14:17:32.323 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :143 - HHH000247: ErrorCode: 0, SQLState: 42804
+2026-02-10 14:17:32.323 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :144 - ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+2026-02-10 14:17:32.325 ERROR 15544 --- [ault-executor-0] i.g.i.SerializingExecutor                :136 - Exception while executing runnable io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed@392e25d5
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]; SQL [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:199)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:557)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:794)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:757)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:687)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:408)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy4/jdk.proxy4.$Proxy158.save(Unknown Source)
+	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTransaction(TransactionGrpcService.java:30)
+	at org.eletra.energy.networkgrpc.grpc.EletraISServiceGrpc$MethodHandlers.invoke(EletraISServiceGrpc.java:246)
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:184)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:145)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:53)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:66)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:180)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:120)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:93)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:108)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:634)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:505)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:381)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireFlush(SessionImpl.java:1489)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:481)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2116)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2038)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:410)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:166)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commitNoRollbackOnly(JdbcResourceLocalTransactionCoordinatorImpl.java:248)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:242)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:89)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:553)
+	... 23 more
+Caused by: org.postgresql.util.PSQLException: ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:181)
+	... 46 more
+2026-02-10 14:17:33.254 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :143 - HHH000247: ErrorCode: 0, SQLState: 42804
+2026-02-10 14:17:33.254 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :144 - ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+2026-02-10 14:17:33.256 ERROR 15544 --- [ault-executor-0] i.g.i.SerializingExecutor                :136 - Exception while executing runnable io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed@280d2f02
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]; SQL [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:199)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:557)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:794)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:757)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:687)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:408)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy4/jdk.proxy4.$Proxy158.save(Unknown Source)
+	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTransaction(TransactionGrpcService.java:30)
+	at org.eletra.energy.networkgrpc.grpc.EletraISServiceGrpc$MethodHandlers.invoke(EletraISServiceGrpc.java:246)
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:184)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:145)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:53)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:66)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:180)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:120)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:93)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:108)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:634)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:505)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:381)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireFlush(SessionImpl.java:1489)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:481)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2116)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2038)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:410)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:166)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commitNoRollbackOnly(JdbcResourceLocalTransactionCoordinatorImpl.java:248)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:242)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:89)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:553)
+	... 23 more
+Caused by: org.postgresql.util.PSQLException: ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:181)
+	... 46 more
+2026-02-10 14:17:33.961 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :143 - HHH000247: ErrorCode: 0, SQLState: 42804
+2026-02-10 14:17:33.961 WARN  15544 --- [ault-executor-0] o.h.o.j.error                            :144 - ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+2026-02-10 14:17:33.963 ERROR 15544 --- [ault-executor-0] i.g.i.SerializingExecutor                :136 - Exception while executing runnable io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed@3a6b6a25
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]; SQL [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:199)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:557)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:794)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:757)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:687)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:408)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy4/jdk.proxy4.$Proxy158.save(Unknown Source)
+	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTransaction(TransactionGrpcService.java:30)
+	at org.eletra.energy.networkgrpc.grpc.EletraISServiceGrpc$MethodHandlers.invoke(EletraISServiceGrpc.java:246)
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:184)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:145)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:53)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:66)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:180)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:120)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:93)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:108)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:634)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:505)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:381)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireFlush(SessionImpl.java:1489)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:481)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2116)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2038)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:410)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:166)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commitNoRollbackOnly(JdbcResourceLocalTransactionCoordinatorImpl.java:248)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:242)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:89)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:553)
+	... 23 more
+Caused by: org.postgresql.util.PSQLException: ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:181)
+	... 46 more
+2026-02-10 14:18:46.720 WARN  1396 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:18:48.141 WARN  1396 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:21:35.810 WARN  24632 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:21:37.179 WARN  24632 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:24:32.717 WARN  35924 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:24:34.232 WARN  35924 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:25:43.691 WARN  26924 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:25:45.051 WARN  26924 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:25:49.247 WARN  26924 --- [ault-executor-0] o.h.o.j.error                            :143 - HHH000247: ErrorCode: 0, SQLState: 42804
+2026-02-10 14:25:49.247 WARN  26924 --- [ault-executor-0] o.h.o.j.error                            :144 - ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+2026-02-10 14:25:49.265 ERROR 26924 --- [ault-executor-0] i.g.i.SerializingExecutor                :136 - Exception while executing runnable io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed@19c569e
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]; SQL [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131)
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:199)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:557)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:794)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:757)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:687)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:408)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy4/jdk.proxy4.$Proxy158.save(Unknown Source)
+	at org.eletra.energy.networkgrpc.services.TicketService.createTicket(TicketService.java:21)
+	at org.eletra.energy.networkgrpc.services.TransactionGrpcService.createTransaction(TransactionGrpcService.java:30)
+	at org.eletra.energy.networkgrpc.grpc.EletraISServiceGrpc$MethodHandlers.invoke(EletraISServiceGrpc.java:246)
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute statement [ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77] [insert into tickets (created_at,payload,status,updated_at,id) values (?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:184)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:145)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:53)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:66)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:180)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:120)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:93)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:108)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:634)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:505)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:381)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireFlush(SessionImpl.java:1489)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:481)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2116)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2038)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:410)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:166)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commitNoRollbackOnly(JdbcResourceLocalTransactionCoordinatorImpl.java:248)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:242)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:89)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:553)
+	... 23 more
+Caused by: org.postgresql.util.PSQLException: ERROR: column "status" is of type ticket_status but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 77
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2846)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2531)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:181)
+	... 46 more
+2026-02-10 14:28:38.985 WARN  33368 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:28:39.951 WARN  33368 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:28:39.951 WARN  33368 --- [  restartedMain] o.h.o.j.warn                             :251 - type "ticketstatus" does not exist, skipping
+2026-02-10 14:28:40.495 WARN  33368 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:29:26.053 WARN  25588 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:29:26.950 WARN  25588 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:29:26.950 WARN  25588 --- [  restartedMain] o.h.o.j.warn                             :251 - type "ticketstatus" does not exist, skipping
+2026-02-10 14:29:27.523 WARN  25588 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:37:18.222 WARN  12456 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:37:19.092 WARN  12456 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:37:19.092 WARN  12456 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:37:19.743 WARN  12456 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:37:31.006 WARN  19244 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:37:31.850 WARN  19244 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:37:31.850 WARN  19244 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:37:32.418 WARN  19244 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:38:09.587 WARN  19244 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:38:09.687 WARN  19244 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:38:09.687 WARN  19244 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:38:09.825 WARN  19244 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:38:13.132 WARN  19244 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:38:13.217 WARN  19244 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:38:13.218 WARN  19244 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:38:13.377 WARN  19244 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:38:23.953 WARN  18096 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:38:24.932 WARN  18096 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:38:24.932 WARN  18096 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:38:25.594 WARN  18096 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:38:37.029 WARN  34400 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:38:37.921 WARN  34400 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:38:37.922 WARN  34400 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:38:38.457 WARN  34400 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:39:40.568 WARN  11596 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:39:41.483 WARN  11596 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:39:41.484 WARN  11596 --- [  restartedMain] o.h.o.j.warn                             :251 - type "ticketstatus" does not exist, skipping
+2026-02-10 14:39:42.119 WARN  11596 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:50:05.523 WARN  4248 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:50:06.515 WARN  4248 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:50:06.515 WARN  4248 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-10 14:50:07.264 WARN  4248 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
