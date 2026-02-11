@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 
 @Import(TestcontainersConfig.class)
 @SpringBootTest
-public class NetworkGrpcApplicationTests {
+public class NetworkGrpcApplicationTest {
 
     @Test
     void contextLoads() {

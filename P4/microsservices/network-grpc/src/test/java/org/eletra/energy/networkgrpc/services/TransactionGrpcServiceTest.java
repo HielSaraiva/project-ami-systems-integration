@@ -34,7 +34,7 @@ public class TransactionGrpcServiceTest {
     private TicketRepository ticketRepository;
 
     @Test
-    public void TransactionShouldBeProcessedTest() {
+    public void transactionShouldBeProcessedTest() {
         // Given
         String payload = """
                 {
@@ -83,7 +83,7 @@ public class TransactionGrpcServiceTest {
     }
 
     @Test
-    public void TicketShouldBeCreatedUpdatedAndSentTest() {
+    public void ticketShouldBeCreatedUpdatedAndSentTest() {
         // Given
         String payload = """
                 {
@@ -133,7 +133,7 @@ public class TransactionGrpcServiceTest {
     }
 
     @Test
-    public void TicketShouldNotBePresentTest() {
+    public void ticketShouldNotBePresentTest() {
         // Given
         String payload = """
                 {
@@ -156,8 +156,7 @@ public class TransactionGrpcServiceTest {
                         }
                 }""";
 
-            Mockito.doReturn(Optional.empty()).when(ticketRepository).findById(Mockito.any(UUID.class));
-//            Mockito.when(ticketRepository.findById(Mockito.any(UUID.class))).thenReturn(Optional.empty());
+        Mockito.doReturn(Optional.empty()).when(ticketRepository).findById(Mockito.any(UUID.class));
 
         // When
         Assertions.assertDoesNotThrow(() -> {

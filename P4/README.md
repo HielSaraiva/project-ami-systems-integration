@@ -162,4 +162,16 @@ Depois de construir o serviço, parti para os testes com o intuito de garantir 1
 
 ### 11. Refatorando os serviços business, converter e network
 
-Para finalizar o projeto, basta refatorar os serviços respeitando a lógica do fluxo!
+Para finalizar o projeto, basta refatorar os serviços respeitando a lógica do fluxo e reconstruir os testes garantindo 100% de cobertura!
+
+**Business** 
+![Business Test Coverage](assets/image7.png)
+
+---
+
+**Converter**
+
+
+---
+
+**Network**

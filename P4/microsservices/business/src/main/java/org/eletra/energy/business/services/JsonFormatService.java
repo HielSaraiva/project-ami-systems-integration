@@ -27,14 +27,10 @@ import java.util.UUID;
 public class JsonFormatService {
 
     private final ObjectMapper objectMapper;
-    private final JmsTemplate jmsTemplate;
     private final Clock clock;
     private final TicketRepository ticketRepository;
-    private final TicketProcessRepository ticketProcessRepository;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter
-            .ofPattern("yyyy-MM-dd HH:mm:ss")
-            .withZone(ZoneOffset.UTC);
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
     private final TicketProcessService ticketProcessService;
 
     public void execute(String ticketId) throws Exception {
@@ -43,33 +39,27 @@ public class JsonFormatService {
         String json = null;
         if (ticket.isPresent()) {
             json = ticket.get().getPayload();
+
+            String processId = ticketProcessService.createProcess(ticket.get(), ProcessStatus.PROCESSING, ProcessType.BUSINESS);
+
+            ReceivedMessageDTO receivedMessageDTO = objectMapper.readValue(json, ReceivedMessageDTO.class);
+
+            verifyReceivedMessageFormat(receivedMessageDTO);
+
+            SentMessageDTO sentMessageDTO = new SentMessageDTO(receivedMessageDTO.getUser().getId(), formatter.format(Instant.now(clock)), formatSentAt(receivedMessageDTO.getLog().getSentAt()), receivedMessageDTO.getLog().getMessage());
+
+            String outputMessage = objectMapper.writeValueAsString(sentMessageDTO);
+
+            log.info("Converted JSON message received from \"training-converter.receive_as_json\" queue:\n{}", outputMessage);
+            ticketProcessService.finishProcess(processId, outputMessage);
+            ticketProcessService.sendTicketProcessId(processId);
         }
-
-        String processId = ticketProcessService.createProcess(ticket.get(), ProcessStatus.PROCESSING, ProcessType.BUSINESS);
-
-        ReceivedMessageDTO receivedMessageDTO = objectMapper.readValue(json, ReceivedMessageDTO.class);
-
-        verifyReceivedMessageFormat(receivedMessageDTO);
-
-        SentMessageDTO sentMessageDTO = new SentMessageDTO(
-                receivedMessageDTO.getUser().getId(),
-                formatter.format(Instant.now(clock)),
-                formatSentAt(receivedMessageDTO.getLog().getSentAt()),
-                receivedMessageDTO.getLog().getMessage());
-
-        String outputMessage = objectMapper.writeValueAsString(sentMessageDTO);
-
-        log.info("Converted JSON message received from \"training-converter.receive_as_json\" queue:\n{}", outputMessage);
-        ticketProcessService.finishProcess(processId, outputMessage);
-        ticketProcessService.sendTicketProcessId(processId);
     }
 
     private String formatSentAt(String raw) {
 
-        DateTimeFormatter inFmt = DateTimeFormatter.ofPattern("MM-dd-uuuu'T'HH:mm:ss.SSS'Z'")
-                .withZone(ZoneOffset.UTC);
-        DateTimeFormatter outFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                .withZone(ZoneOffset.UTC);
+        DateTimeFormatter inFmt = DateTimeFormatter.ofPattern("MM-dd-uuuu'T'HH:mm:ss.SSS'Z'").withZone(ZoneOffset.UTC);
+        DateTimeFormatter outFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
 
         Instant inst = inFmt.parse(raw, Instant::from);
         return outFmt.format(inst);

@@ -1,20 +1,33 @@
 package org.eletra.energy.business.configs;
 
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.context.annotation.Bean;
 import org.testcontainers.activemq.ArtemisContainer;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.postgresql.PostgreSQLContainer;
+import org.testcontainers.utility.DockerImageName;
 
 
+@TestConfiguration(proxyBeanMethods = false)
 public class TestcontainersConfig {
 
-    @Container
-    public static final ArtemisContainer artemisContainer = new ArtemisContainer("apache/activemq-artemis:latest")
-            .withUser("test")
-            .withPassword("test");
+    @Bean
+    @ServiceConnection
+    ArtemisContainer artemisContainer() {
+        return new ArtemisContainer(DockerImageName.parse("apache/activemq-artemis:latest"));
+    }
 
-    @Container
-    public static final PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:latest")
-            .withUsername("test")
-            .withPassword("test")
-            .withDatabaseName("test");
+    @Bean
+    @ServiceConnection
+    PostgreSQLContainer postgresContainer() {
+        return new PostgreSQLContainer(DockerImageName.parse("postgres:latest"));
+    }
+
+    @Bean
+    @ServiceConnection(name = "redis")
+    GenericContainer<?> redisContainer() {
+        return new GenericContainer<>(DockerImageName.parse("redis:latest")).withExposedPorts(6379);
+    }
 }

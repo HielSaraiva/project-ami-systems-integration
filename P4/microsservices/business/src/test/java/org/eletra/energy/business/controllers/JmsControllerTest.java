@@ -1,55 +1,37 @@
 package org.eletra.energy.business.controllers;
 
+import org.eletra.energy.business.configs.TestcontainersConfig;
+import org.eletra.energy.business.models.entities.Ticket;
+import org.eletra.energy.business.models.enums.TicketStatus;
+import org.eletra.energy.business.repositories.TicketRepository;
 import org.eletra.energy.business.services.JsonFormatService;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
-import static org.eletra.energy.business.configs.TestcontainersConfig.artemisContainer;
-import static org.eletra.energy.business.configs.TestcontainersConfig.postgresContainer;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Import(TestcontainersConfig.class)
 @SpringBootTest
-public class JmsControllerTests {
+public class JmsControllerTest {
 
     @Autowired
     private JmsController jmsController;
 
+    @Autowired
+    private TicketRepository ticketRepository;
+
     @MockitoSpyBean
     private JsonFormatService jsonFormatService;
-
-    @DynamicPropertySource
-    static void artemisProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.artemis.broker-url", artemisContainer::getBrokerUrl);
-        registry.add("spring.artemis.user", artemisContainer::getUser);
-        registry.add("spring.artemis.password", artemisContainer::getPassword);
-    }
-
-    @DynamicPropertySource
-    static void postgresProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
-        registry.add("spring.datasource.driver-class-name", postgresContainer::getDriverClassName);
-        registry.add("spring.datasource.username", postgresContainer::getUsername);
-        registry.add("spring.datasource.password", postgresContainer::getPassword);
-        registry.add("spring.jpa.hibernate.ddl-auto", () -> "update");
-        registry.add("spring.jpa.show-sql", () -> "true");
-    }
-
-    @BeforeAll
-    public static void beforeAll() {
-        artemisContainer.start();
-        postgresContainer.start();
-    }
 
     @Test
     public void jsonShouldBeSendToConvert() throws Exception {
         // Given
-        String message = """
+        String payload = """
                 {
                     "user":
                         {
@@ -70,19 +52,22 @@ public class JmsControllerTests {
                         }
                 }""";
 
+        Ticket testTicket = new Ticket(TicketStatus.IN_PROGRESS, payload);
+        ticketRepository.save(testTicket);
+
         // When
         Assertions.assertDoesNotThrow(() -> {
-            jmsController.receiveJson(message);
+            jmsController.receiveJson(testTicket.getId().toString());
         });
 
         // Then
-        Mockito.verify(jsonFormatService, Mockito.times(1)).execute(message);
+        Mockito.verify(jsonFormatService, Mockito.times(1)).execute(testTicket.getId().toString());
     }
 
     @Test
     public void sendShouldThrowOnMalformedJson() {
         // Given
-        String message = """
+        String payload = """
                 {
                     "user"
                         {
@@ -103,8 +88,11 @@ public class JmsControllerTests {
                         }
                 }""";
 
+        Ticket testTicket = new Ticket(TicketStatus.IN_PROGRESS, payload);
+        ticketRepository.save(testTicket);
+
         // When
-        Exception exception = assertThrows(Exception.class, () -> jmsController.receiveJson(message));
+        Exception exception = assertThrows(Exception.class, () -> jmsController.receiveJson(testTicket.getId().toString()));
 
         // Then
         assertTrue(exception.getMessage().contains("Unexpected character"), "Expected a JSON parsing exception");
