@@ -23,7 +23,7 @@ public class TicketService {
         return ticket.getId().toString();
     }
 
-    public void sendTicketId(String ticketId) {
+    public void     sendTicketId(String ticketId) {
         jmsTemplate.convertAndSend("training-converter.receive_as_json", ticketId);
         log.info("Ticket ID sent to \"training-converter.receive_as_json\" queue: {}", ticketId);
     }

@@ -1850,3 +1850,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "status" is of type 
 2026-02-10 14:50:06.515 WARN  4248 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
 2026-02-10 14:50:06.515 WARN  4248 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
 2026-02-10 14:50:07.264 WARN  4248 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10 14:54:03.433 WARN  26344 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-10 14:54:04.251 WARN  26344 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-10 14:54:04.252 WARN  26344 --- [  restartedMain] o.h.o.j.warn                             :251 - type "ticketstatus" does not exist, skipping
+2026-02-10 14:54:04.764 WARN  26344 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning

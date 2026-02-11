@@ -6,11 +6,20 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.Logger;
 import org.eletra.energy.business.models.dtos.ReceivedMessageDTO;
 import org.eletra.energy.business.models.dtos.SentMessageDTO;
+import org.eletra.energy.business.models.entities.Ticket;
+import org.eletra.energy.business.models.entities.TicketProcess;
+import org.eletra.energy.business.models.enums.ProcessStatus;
+import org.eletra.energy.business.models.enums.ProcessType;
+import org.eletra.energy.business.repositories.TicketProcessRepository;
+import org.eletra.energy.business.repositories.TicketRepository;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -20,12 +29,23 @@ public class JsonFormatService {
     private final ObjectMapper objectMapper;
     private final JmsTemplate jmsTemplate;
     private final Clock clock;
+    private final TicketRepository ticketRepository;
+    private final TicketProcessRepository ticketProcessRepository;
 
     private final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm:ss")
             .withZone(ZoneOffset.UTC);
+    private final TicketProcessService ticketProcessService;
 
-    public void execute(String json) throws Exception {
+    public void execute(String ticketId) throws Exception {
+
+        Optional<Ticket> ticket = ticketRepository.findById(UUID.fromString(ticketId));
+        String json = null;
+        if (ticket.isPresent()) {
+            json = ticket.get().getPayload();
+        }
+
+        String processId = ticketProcessService.createProcess(ticket.get(), ProcessStatus.PROCESSING, ProcessType.BUSINESS);
 
         ReceivedMessageDTO receivedMessageDTO = objectMapper.readValue(json, ReceivedMessageDTO.class);
 
@@ -40,9 +60,8 @@ public class JsonFormatService {
         String outputMessage = objectMapper.writeValueAsString(sentMessageDTO);
 
         log.info("Converted JSON message received from \"training-converter.receive_as_json\" queue:\n{}", outputMessage);
-        log.info("Sending JSON message to \"training-converter.send_as_json\" queue...");
-        jmsTemplate.convertAndSend("training-converter.send_as_json", outputMessage);
-        log.info("Message sent to \"training-converter.send_as_json\"!\n");
+        ticketProcessService.finishProcess(processId, outputMessage);
+        ticketProcessService.sendTicketProcessId(processId);
     }
 
     private String formatSentAt(String raw) {

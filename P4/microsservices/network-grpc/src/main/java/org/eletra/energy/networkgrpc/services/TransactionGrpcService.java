@@ -37,6 +37,7 @@ public class TransactionGrpcService extends EletraISServiceGrpc.EletraISServiceI
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+        log.info("Response sent to gRPC client with ticket ID: {} and status: {}", ticketId, "RECEIVED");
 
         ticketService.sendTicketId(ticketId);
 
@@ -44,6 +45,7 @@ public class TransactionGrpcService extends EletraISServiceGrpc.EletraISServiceI
         if (ticket.isPresent()) {
             ticket.get().setStatus(TicketStatus.IN_PROGRESS);
             ticketRepository.save(ticket.get());
+            log.info("Ticket with ID: {} status updated to IN_PROGRESS", ticketId);
         }
     }
 }

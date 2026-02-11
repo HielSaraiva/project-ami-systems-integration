@@ -13,8 +13,8 @@ public class JmsController {
     private final JsonFormatService jsonFormatService;
 
     @JmsListener(destination = "training-converter.receive_as_json")
-    public void receiveJson(String message) throws Exception {
-        log.info("Received JSON message from \"training-converter.receive_as_json\" queue:\n{}", message);
-        jsonFormatService.execute(message);
+    public void receiveJson(String ticketId) throws Exception {
+        log.info("Received Ticket ID message from \"training-converter.receive_as_json\" queue:\n{}", ticketId);
+        jsonFormatService.execute(ticketId);
     }
 }

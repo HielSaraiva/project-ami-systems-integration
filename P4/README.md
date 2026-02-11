@@ -72,7 +72,7 @@ Dito isso, vou aproveitar o momento para realizar melhorias nos microsserviços 
 
 Após as melhorias, rode os serviços e verifique se estão funcionando.
 
-### 4. Criando Projeto Java Spring
+### 4. Criando Projeto Java Spring network-grpc
 
 Usei a IntelliJ IDE da JetBrains para criar o módulo:
 
@@ -84,11 +84,11 @@ Adicionei essas dependências ao criar o Projeto, incluindo a dependência do fr
 
 > **Observação:** Consulte a documentação do Spring: [HELP.md](microsservices/network-grpc/HELP.md)
 
-### 5. Configurando application.properties
+### 5. Configurando application.properties network-grpc
 
 Depois da criação do projeto, eu configurei o arquivo [application.properties](microsservices/network-grpc/src/main/resources/application.properties) com as informações relacionadas ao Banco de Dados PostgreSQL, ao ActiveMQ Artemis e ao gRPC.
 
-### 6. Logging com Apache Log4j2
+### 6. Logging com Apache Log4j2 network-grpc
 
 Vamos usar o [Log4j2](https://logging.apache.org/log4j/2.12.x/maven-artifacts.html) para realizar o logging do nosso microsserviço network.
 
@@ -145,16 +145,21 @@ Eu projetei o fluxo do sistema da seguinte forma:
 
 > **Obs.:** Utilizei o envio do process_id via fila ao invés do ticket_id nos serviços: ``business`` e ``converter`` pois queria salvar o histórico dos payloads. Mandando sempre o ``ticket_id`` não possibilitaria isso...
 
-### 9. Configurando network-grpc
+### 9. Configurando e Construindo microsserviço network-grpc
 
-0. Criei o arquivo .proto
+Comecei configurando o arquivo [network-grpc.proto](microsservices/network-grpc/src/main/proto/network-grpc.proto) com as configurações de conexão do nosso Server gRPC. Na sequência, dei um ``mvn clean package`` para gerar as classes relacionados ao Protobuf dentro da pasta [target/../generated-sourcer/protobuf](microsservices/network-grpc/target/generated-sources/protobuf/) e marquei essa pasta ``protobuf`` como Generated Source Root, como na imagem:
 
-1. Dei um mvn clean package para gerar as classes do protobuf de acordo com o .proto.
+![Protobuf Folder](assets/image5.png)
 
-2. Coloquei a pasta do protobuf, onde são geradas as classes do protobuf, como Generated Source Root.
+Depois de tudo isso feito, parti para o desenvolvimento do serviço, criando uma Entidade Ticket, um Enum TicketStatus, um Service TicketService e um GrpcService TransactionGrpcService.
 
-3. Corrigi as entidades, adicionei o columnDefinition = "TEXT" na coluna de payload, pois o Hibernate estava sobrescrevendo minha configuração da coluna.
 
-4. Renomeei a classe GrpService e os métodos do .proto
+### 10. Testes Unitários e de Integração network-grpc
 
-5. 
+Depois de construir o serviço, parti para os testes com o intuito de garantir 100% de cobertura:
+
+![Test Coverage](assets/image6.png)
+
+### 11. Refatorando os serviços business, converter e network
+
+Para finalizar o projeto, basta refatorar os serviços respeitando a lógica do fluxo!
