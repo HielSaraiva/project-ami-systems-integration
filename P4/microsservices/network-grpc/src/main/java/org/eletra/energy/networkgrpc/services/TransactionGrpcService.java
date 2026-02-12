@@ -45,7 +45,7 @@ public class TransactionGrpcService extends EletraISServiceGrpc.EletraISServiceI
         if (ticket.isPresent()) {
             ticket.get().setStatus(TicketStatus.IN_PROGRESS);
             ticketRepository.save(ticket.get());
-            log.info("Ticket with ID: {} status updated to IN_PROGRESS", ticketId);
+            log.info("Ticket with ID: {} status updated to IN_PROGRESS\n", ticketId);
         }
     }
 }

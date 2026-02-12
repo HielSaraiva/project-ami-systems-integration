@@ -135,6 +135,12 @@ Eu projetei o fluxo do sistema da seguinte forma:
 
 ![System Flow](assets/image4.png)
 
+````json
+{
+  "json_payload": "{\"user\":{\"id\":\"9a756f20-5c30-4fa5-a8ff-00a21272d10b\",\"username\":\"arthurgabriel.nunes\",\"firstName\":\"Lívia\",\"lastName\":\"Teles\",\"employeeCode\":\"650623\",\"position\":\"journalist\",\"cpf\":\"503.584.238-05\"},\"log\":{\"id\":\"c586236d-8e87-420a-8634-4edd98fe2123\",\"sentAt\":\"02-10-2026T15:30:57.000Z\",\"message\":\"A hundred million people went to see a movie about what I do. I wonder how many people would go see a movie called Jurassic Parka. No, no, no, a bunch of out-of-control jackets take over an island!\",\"format\":null}}"
+}
+````
+
 1. O server gRPC: ``network-grpc``, ao receber a requisição, vai criar um ticket com os campos: ``id``, ``status``, ``payload``, ``created_at`` e ``updated_at``, sendo o ``payload`` a mensagem enviada pelo cliente gRPC, o ``created_at`` o tempo de criação da tupla, atribuído automaticamente, e o ``status`` um enum que representa o estado do ticket, obviamente. Depois de criar a tupla com esses valores e armazenar no banco, o server gRPC vai enviar o id do ticket criado via fila para o próximo serviço: ``business``.
 
 2. O serviço ``business``, ao receber o id do ticket, vai criar um processo com os campos: ``id``, ``ticket_id``, ``status``, ``started_at``, ``finished_at``, ``payload`` e ``type``, sendo ``ticket_id`` o id recebido via fila e ``type`` o serviço atual: ``BUSINESS``, ``CONVERTER`` ou ``NETWORK``. Depois disso, vai buscar no banco o payload do ticket corresponde a esse ``id`` e aplicará a lógica de negócio. Na sequência, irá salvar o ``payload`` do processo no banco e, após enviar o id do processo atual via fila para o próximo serviço: ``converter``, mudará o ``status`` do processo para ``SUCCESS``. 
@@ -192,3 +198,18 @@ Agora, sempre que eu subir um FTPServer ele irá pegar uma porta livre e ao cria
 
 #### Migrations
 
+Eu estava enfrentando um erro envolvendo o Flyway e o Hibernate, pois eu modelei o banco usando o Flyway, mas ao rodar a aplicação o Hibernate estava recriando as tabelas e os campos seguindos a modelagem das Entities da aplicação Java. Isso era um problema, pois eu precisava das migrations em todos os serviços!
+
+Para resolver isso, deixei as migrations apenas no primeiro serviço ``network-grpc`` e configurei todos os serviços com ``spring.jpa.hibernate.ddl-auto=validate``! Agora, apenas o primeiro serviço é responsável por criar o Banco de Dados e não haverá mais conflito envolvendo o Flyway e o Hibernate. **PROBLEMA RESOLVIDO**
+
+**Estratégia de Configuração por Serviço**
+
+| Filosofia | Quem manda? | Ferramenta | Como funciona |
+| :--- | :--- | :--- | :--- |
+| **Table-First** | O Banco de Dados | Flyway | Você escreve o SQL manualmente. O Java precisa se adaptar ao que existe no banco |
+| **Entity-First** | O Código Java | Hibernate (JPA) | Você define a @Entity e o Hibernate gera o SQL sozinho (usando update ou create) |
+
+---
+
+* **Database-First:** O Flyway é a fonte da verdade. O Java deve se adaptar ao banco.
+* **Resiliência:** O uso de `ddl-auto: none` nos serviços seguidores permite que o pipeline seja escalado sem que o Hibernate "fiscalize" colunas que o serviço sequer utiliza. Mas o recomendado é usar `ddl-auto: validate`, pois o Hibernate seria responsável apenas por verificar se os tipos dos campos das Entities batem com os tipos dos campos criados via Flyway.

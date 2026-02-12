@@ -28,7 +28,7 @@ public class TicketProcess {
     private Ticket ticket;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(columnDefinition = "process_status")
+    @Column(columnDefinition = "process_status", nullable = false)
     private ProcessStatus status;
 
     @CreationTimestamp
@@ -43,7 +43,7 @@ public class TicketProcess {
     private String payload;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(columnDefinition = "process_type")
+    @Column(columnDefinition = "process_type", nullable = false)
     private ProcessType type;
 
     public TicketProcess(Ticket ticket, ProcessStatus status, ProcessType type) {

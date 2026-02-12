@@ -23,7 +23,7 @@ public class Ticket {
     private UUID id;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(columnDefinition = "ticket_status")
+    @Column(columnDefinition = "ticket_status", nullable = false)
     private TicketStatus status;
 
     @Column(name = "payload", columnDefinition = "TEXT")
