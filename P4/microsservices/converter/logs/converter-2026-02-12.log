@@ -38,3 +38,4 @@
 2026-02-12 10:01:25.811 WARN  26252 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
 2026-02-12 10:01:25.812 WARN  26252 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
 2026-02-12 10:01:26.879 WARN  26252 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-12 11:45:27.799 WARN  26252 --- [l-1:housekeeper] c.z.h.p.HikariPool                       :825 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=29m34s384ms229µs1ns).

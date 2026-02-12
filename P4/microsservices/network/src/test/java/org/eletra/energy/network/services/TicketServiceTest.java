@@ -1,5 +1,6 @@
 package org.eletra.energy.network.services;
 
+import org.eletra.energy.network.configs.TestcontainersConfig;
 import org.eletra.energy.network.models.entities.Ticket;
 import org.eletra.energy.network.models.entities.TicketProcess;
 import org.eletra.energy.network.models.enums.ProcessStatus;
@@ -8,21 +9,17 @@ import org.eletra.energy.network.models.enums.TicketStatus;
 import org.eletra.energy.network.repositories.TicketProcessRepository;
 import org.eletra.energy.network.repositories.TicketRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.Optional;
 
-import static org.eletra.energy.network.configs.TestcontainersConfig.artemisContainer;
-import static org.eletra.energy.network.configs.TestcontainersConfig.ftpContainer;
-import static org.eletra.energy.network.configs.TestcontainersConfig.postgresContainer;
-
+@Import(TestcontainersConfig.class)
 @SpringBootTest
 public class TicketServiceTest {
 
@@ -34,39 +31,6 @@ public class TicketServiceTest {
 
     @MockitoSpyBean
     private TicketProcessRepository ticketProcessRepository;
-
-    @DynamicPropertySource
-    static void ftpProperties(DynamicPropertyRegistry registry) {
-        registry.add("test.ftp.host", ftpContainer::getHost);
-        registry.add("test.ftp.port", () -> ftpContainer.getMappedPort(21));
-        registry.add("test.ftp.user", () -> "test");
-        registry.add("test.ftp.pass", () -> "test");
-        registry.add("test.ftp.clientMode", () -> 2);
-    }
-
-    @DynamicPropertySource
-    static void artemisProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.artemis.broker-url", artemisContainer::getBrokerUrl);
-        registry.add("spring.artemis.user", artemisContainer::getUser);
-        registry.add("spring.artemis.password", artemisContainer::getPassword);
-    }
-
-    @DynamicPropertySource
-    static void postgresProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
-        registry.add("spring.datasource.driver-class-name", postgresContainer::getDriverClassName);
-        registry.add("spring.datasource.username", postgresContainer::getUsername);
-        registry.add("spring.datasource.password", postgresContainer::getPassword);
-        registry.add("spring.jpa.hibernate.ddl-auto", () -> "update");
-        registry.add("spring.jpa.show-sql", () -> "true");
-    }
-
-    @BeforeAll
-    public static void beforeAll() {
-        artemisContainer.start();
-        postgresContainer.start();
-        ftpContainer.start();
-    }
 
     @Test
     public void ticketShouldNotBePresent() {

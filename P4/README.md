@@ -179,3 +179,16 @@ Para finalizar o projeto, basta refatorar os serviços, respeitando a lógica do
 #### Network
 
 ![Network Test Coverage](assets/image9.png)
+
+### 12. Troubleshoots
+
+#### Testes envolvendo o FTPServer e o FTPCliente
+
+Estava acontecendo de, ao rodar todos os testes do network, alguns testes darem errado por não conseguirem instanciar o FTPServer. O motivo era que o teste seguinte tentava criar um FTPServer na mesma porta usada anteriormente, sendo que o FTPServer do teste anterior ainda estava de pé.
+
+Para resolver isso, ao criar a sessão FTP, é passado uma referência do FTPServer. Dentro do ftpSessionFactory, pego a mesma porta FTP usada pelo Server e setto na sessão FTP.
+
+Agora, sempre que eu subir um FTPServer ele irá pegar uma porta livre e ao criar a Sessão já será passado essa mesma porta usada pelo Server. **PROBLEMA RESOLVIDO**
+
+#### Migrations
+
