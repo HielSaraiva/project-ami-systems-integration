@@ -1,6 +1,6 @@
-package org.eletra.energy.business.repositories;
+package org.eletra.energy.converter.repositories;
 
-import org.eletra.energy.business.models.entities.TicketProcess;
+import org.eletra.energy.converter.models.entities.TicketProcess;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

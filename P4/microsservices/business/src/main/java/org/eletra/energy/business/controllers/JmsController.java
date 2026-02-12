@@ -14,7 +14,7 @@ public class JmsController {
 
     @JmsListener(destination = "training-converter.receive_as_json")
     public void receiveJson(String ticketId) throws Exception {
-        log.info("Received Ticket ID message from \"training-converter.receive_as_json\" queue:\n{}", ticketId);
+        log.info("Received Ticket ID from \"training-converter.receive_as_json\" queue:\n{}", ticketId);
         jsonFormatService.execute(ticketId);
     }
 }

@@ -1,0 +1,3 @@
+2026-02-11 13:25:45.192 ERROR 38092 --- [  restartedMain] o.f.c.i.c.DbMigrate                      :49 - Schema "public" has version 005, but no migration could be resolved in the configured locations !
+2026-02-11 13:25:45.962 WARN  38092 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-11 13:25:46.781 WARN  38092 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning

@@ -11,6 +11,8 @@
    - [Entregáveis](#entregáveis-2)
 - [Projeto 3 - O programador se demitiu...](#projeto-3---o-programador-se-demitiu)
    - [Entregáveis](#entregáveis-3)
+- [Projeto 4 - O projeto evoluiu!](#projeto-4---o-projeto-evoluiu)
+   - [Entregáveis](#entregáveis-4)
 
 ---
 
