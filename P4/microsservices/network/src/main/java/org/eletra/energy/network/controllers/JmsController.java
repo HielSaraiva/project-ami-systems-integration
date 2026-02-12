@@ -14,8 +14,8 @@ public class JmsController {
     private final CsvFtpService csvFtpService;
 
     @JmsListener(destination = "training-converter.send_as_csv")
-    public void receiveCsv(String message) throws Exception {
-        log.info("Received CSV message from \"training-converter.send_as_csv\" queue:\n{}", message);
-        csvFtpService.execute(message);
+    public void receiveCsv(String processId) throws Exception {
+        log.info("Received Process ID from \"training-converter.send_as_csv\" queue:\n{}", processId);
+        csvFtpService.execute(processId);
     }
 }

@@ -24,14 +24,13 @@ public class JsonToCsvService {
 
     private final ObjectMapper objectMapper;
     private final CsvMapper csvMapper;
-    private final JmsTemplate jmsTemplate;
     private final TicketProcessRepository ticketProcessRepository;
     private final TicketProcessService ticketProcessService;
 
     public void execute(String processIdInput) throws Exception {
 
         Optional<TicketProcess> ticketProcess = ticketProcessRepository.findById(UUID.fromString(processIdInput));
-        String json = null;
+        String json;
         if (ticketProcess.isPresent()) {
             json = ticketProcess.get().getPayload();
 

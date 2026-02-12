@@ -10,7 +10,7 @@ import static org.eletra.energy.network.configs.TestcontainersConfig.*;
 import static org.eletra.energy.network.configs.TestcontainersConfig.ftpContainer;
 
 @SpringBootTest
-class NetworkApplicationTests {
+class NetworkApplicationTest {
 
     @DynamicPropertySource
     static void ftpProperties(DynamicPropertyRegistry registry) {

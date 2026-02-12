@@ -177,3 +177,5 @@ Para finalizar o projeto, basta refatorar os serviços, respeitando a lógica do
 ---
 
 #### Network
+
+![Network Test Coverage](assets/image9.png)

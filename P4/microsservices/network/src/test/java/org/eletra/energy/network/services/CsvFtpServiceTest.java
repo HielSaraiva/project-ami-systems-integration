@@ -1,29 +1,39 @@
-package org.eletra.energy.network.controllers;
+package org.eletra.energy.network.services;
 
-import org.eletra.energy.network.services.CsvFtpService;
+import org.eletra.energy.network.models.entities.Ticket;
+import org.eletra.energy.network.models.entities.TicketProcess;
+import org.eletra.energy.network.models.enums.ProcessStatus;
+import org.eletra.energy.network.models.enums.ProcessType;
+import org.eletra.energy.network.models.enums.TicketStatus;
+import org.eletra.energy.network.repositories.TicketProcessRepository;
+import org.eletra.energy.network.repositories.TicketRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
-import static org.eletra.energy.network.configs.TestcontainersConfig.artemisContainer;
-import static org.eletra.energy.network.configs.TestcontainersConfig.postgresContainer;
-import static org.eletra.energy.network.configs.TestcontainersConfig.ftpContainer;
+import java.io.IOException;
+import java.util.Optional;
 
+import static org.eletra.energy.network.configs.TestcontainersConfig.*;
 
 @SpringBootTest
-public class JmsControllerTests {
+public class CsvFtpServiceTest {
 
     @Autowired
-    private JmsController jmsController;
+    private CsvFtpService csvFtpService;
 
     @MockitoSpyBean
-    private CsvFtpService csvFtpService;
+    private TicketRepository ticketRepository;
+
+    @MockitoSpyBean
+    private TicketProcessRepository ticketProcessRepository;
 
     @DynamicPropertySource
     static void ftpProperties(DynamicPropertyRegistry registry) {
@@ -59,19 +69,46 @@ public class JmsControllerTests {
     }
 
     @Test
-    public void csvShouldBeSentToStorage() throws Exception {
+    public void csvShouldBeStorage() throws IOException {
         // Given
-        String message = """
+        String payload = """
                 user,time,message
                 "d1a1b3ca-0884-4701-a219-6ada5c638812","2026-02-02 12:34:21","Until I was 25 I thought the only response to ‘I love you’ was ‘Oh crap!'"
                 """;
 
+        Ticket testTicket = new Ticket(TicketStatus.IN_PROGRESS, payload);
+        ticketRepository.save(testTicket);
+        TicketProcess testProcess = new TicketProcess(testTicket, ProcessStatus.PROCESSING, ProcessType.BUSINESS);
+        testProcess.setPayload(payload);
+        ticketProcessRepository.save(testProcess);
+
+        // When & Then
+        Assertions.assertDoesNotThrow(() -> {
+            csvFtpService.execute(testProcess.getId().toString());
+        });
+    }
+
+    @Test
+    public void ticketProcessShouldNotBePresent() {
+        //Given
+        String payload = """
+                user,time,message
+                "d1a1b3ca-0884-4701-a219-6ada5c638812","2026-02-02 12:34:21","Until I was 25 I thought the only response to ‘I love you’ was ‘Oh crap!'"
+                """;
+
+        Mockito.doReturn(Optional.empty()).when(ticketProcessRepository).findById(Mockito.any());
+        Ticket testTicket = new Ticket(TicketStatus.IN_PROGRESS, payload);
+        ticketRepository.save(testTicket);
+        TicketProcess testProcess = new TicketProcess(testTicket, ProcessStatus.PROCESSING, ProcessType.BUSINESS);
+        testProcess.setPayload(payload);
+        ticketProcessRepository.save(testProcess);
+
         // When
         Assertions.assertDoesNotThrow(() -> {
-           jmsController.receiveCsv(message);
+            csvFtpService.execute(testProcess.getId().toString());
         });
 
         // Then
-        Mockito.verify(csvFtpService, Mockito.times(1)).execute(message);
+        Mockito.verify(ticketProcessRepository, Mockito.times(1)).findById(Mockito.any());
     }
 }

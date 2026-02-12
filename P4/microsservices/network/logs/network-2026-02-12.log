@@ -1,0 +1,18 @@
+2026-02-12 10:01:00.498 WARN  9284 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-12 10:01:01.246 WARN  9284 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-12 10:02:26.974 WARN  4168 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-12 10:02:27.913 WARN  4168 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-12 10:02:27.913 WARN  4168 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-12 10:02:27.917 WARN  4168 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-12 10:02:27.917 WARN  4168 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-12 10:02:27.920 WARN  4168 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-12 10:02:27.920 WARN  4168 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-12 10:02:28.556 WARN  4168 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-12 10:03:50.105 WARN  6100 --- [  restartedMain] o.h.o.deprecation                        :152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-12 10:03:50.987 WARN  6100 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-12 10:03:50.988 WARN  6100 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-12 10:03:50.991 WARN  6100 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-12 10:03:50.991 WARN  6100 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-12 10:03:50.994 WARN  6100 --- [  restartedMain] o.h.o.j.warn                             :250 - HHH000247: ErrorCode: 0, SQLState: 00000
+2026-02-12 10:03:50.994 WARN  6100 --- [  restartedMain] o.h.o.j.warn                             :251 - drop cascades to 2 other objects
+2026-02-12 10:03:51.669 WARN  6100 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration :247 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
